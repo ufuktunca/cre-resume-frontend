@@ -1,4 +1,5 @@
 import React from "react";
+import "./assets/scss/style.scss";
 import "./App.css";
 import "./assets/css/owl.carousel.min.css";
 import "./assets/css/flaticon.css";
@@ -42,10 +43,9 @@ import "./assets/scss/_services.scss";
 import "./assets/scss/_support-company.scss";
 import "./assets/scss/_team.scss";
 import "./assets/scss/_testimonial.scss";
-import "./assets/scss/style.scss";
 import "./assets/scss/_variables.scss";
 
-export default function Register() {
+export default function Login() {
   return (
     <body>
       <header>
@@ -57,6 +57,7 @@ export default function Register() {
                   <div className="logo">
                     <a
                       //href="index.html"
+
                       style={{
                         display: "flex",
                         justifyContent: "center",
@@ -69,19 +70,17 @@ export default function Register() {
                         width="50px"
                         height="50px"
                       />
-                      {
-                        <div
-                          style={{
-                            fontFamily: "Muli,sans-serif",
-                            color: "#F8C630",
-                            fontSize: "25px",
-                            fontWeight: "900",
-                          }}
-                        >
-                          {" "}
-                          Cre-Resume{" "}
-                        </div>
-                      }
+                      <div
+                        style={{
+                          fontFamily: "Muli,sans-serif",
+                          color: "#F8C630",
+                          fontSize: "25px",
+                          fontWeight: 900,
+                        }}
+                      >
+                        {" "}
+                        Cre-Resume{" "}
+                      </div>
                     </a>
                   </div>
                 </div>
@@ -151,198 +150,80 @@ export default function Register() {
       <main>
         <div className="container login-container">
           <div className="row">
-            <div className="col-md-3"></div>
             <div
-              className="col-md-6 login-form-2"
+              className="col-md-6 login-form-1"
               style={{
-                borderRadius: "15px",
+                borderTopLeftRadius: "15px",
+                borderBottomLeftRadiues: "15px",
               }}
             >
               <form action="">
-                <h3
-                  style={{
-                    fontSize: "35px",
-                    textAlign: "center",
-                    marginBottom: "12%",
-                    color: "#fff",
-                  }}
-                >
-                  Register
-                </h3>
-                <div
-                  className="form-group"
-                  style={{
-                    marginBottom: "0.8rem !important",
-                  }}
-                >
-                  <div href="#" className="btnForgetPwd" /*value=""*/>
-                    Name *
-                  </div>
-                </div>
-                <div
-                  className="form-group"
-                  style={{
-                    marginBottom: "0.8rem !important",
-                  }}
-                >
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Name *"
-                    /*value=""*/
-                    name="name"
-                  />
-                </div>
-                <div
-                  className="form-group"
-                  style={{
-                    marginBottom: "0.8rem !important",
-                  }}
-                >
-                  <div href="#" className="btnForgetPwd" /*value=""*/>
-                    Surname *
-                  </div>
-                </div>
-                <div
-                  className="form-group"
-                  style={{
-                    marginBottom: "0.8rem !important",
-                  }}
-                >
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Surname *"
-                    /*value=""*/
-                    name="surname"
-                  />
-                </div>
-                <div
-                  className="form-group"
-                  style={{
-                    marginBottom: "0.8rem !important",
-                  }}
-                >
-                  <div href="#" className="btnForgetPwd" /*value=""*/>
-                    Email *
-                  </div>
-                </div>
-                <div
-                  className="form-group"
-                  style={{
-                    marginBottom: "0.8rem !important",
-                  }}
-                >
+                <h3>Unemployed User Login</h3>
+
+                <div className="form-group">
                   <input
                     type="text"
                     className="form-control"
                     placeholder="Email *"
-                    /*value=""*/
+                    // value=""
                     name="email"
                   />
                 </div>
-                <div
-                  className="form-group"
-                  style={{
-                    marginBottom: "0.8rem !important",
-                  }}
-                >
-                  <div href="#" className="btnForgetPwd" /*value=""*/>
-                    Password *
-                  </div>
-                </div>
-                <div
-                  className="form-group"
-                  style={{
-                    marginBottom: "0.8rem !important",
-                  }}
-                >
+                <div className="form-group">
                   <input
                     type="password"
                     className="form-control"
                     placeholder="Password *"
-                    /*value=""*/
+                    //value=""
                     name="password"
                   />
                 </div>
-                <div
-                  className="form-group"
-                  style={{
-                    marginBottom: "0.8rem !important",
-                  }}
-                >
-                  <div href="#" className="btnForgetPwd" /*value=""*/>
-                    Confirm Password *
-                  </div>
-                </div>
-                <div
-                  className="form-group"
-                  style={{
-                    marginBottom: "0.8rem !important",
-                  }}
-                >
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Confirm Password *"
-                    /*value=""*/
-                    name="confirmPassword"
-                  />
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    /*value="employer"*/
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="inlineRadio1"
-                    // style="color: white;font-size: 17px;"
-                    style={{
-                      color: "white",
-                      fontSize: "17px",
-                    }}
-                  >
-                    Employer
-                  </label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    //value="unemployed"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="inlineRadio2"
-                    // style="color: white;font-size: 17px;"
-                    style={{
-                      color: "white",
-                      fontSize: "17px",
-                    }}
-                  >
-                    Unemployed
-                  </label>
-                </div>
-                <div
-                  className="form-group"
-                  style={{
-                    marginTop: "30px",
-                  }}
-                >
+                <div className="form-group">
                   <input
                     type="submit"
-                    className="btnSubmit" /*value="Register"*/
+                    className="btnSubmit" /*value="Login"*/
                   />
                 </div>
               </form>
             </div>
-            <div className="col-md-3"></div>
+            <div
+              className="col-md-6 login-form-2"
+              style={{
+                borderTopRightRadius: "15px",
+                borderBottomRightRadius: "15px",
+              }}
+            >
+              <div className="login-logo">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+              </div>
+              <form action="">
+                <h3>Employer User Login</h3>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Email *"
+                    // value=""
+                    name="email"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Password *"
+                    //value=""
+                    name="password"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="submit"
+                    className="btnSubmit" /*value="Login"*/
+                  />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </main>

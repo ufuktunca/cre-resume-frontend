@@ -12,9 +12,9 @@ import "./assets/css/nice-select.css";
 import "./assets/css/style.css";
 import "./assets/css/bootstrap.min.css";
 import "./assets/css/responsive.css";
-import "./Doc/css/font-awesome.min.css";
-import "./Doc/css/main.css";
-import "./Doc/css/normalize.min.css";
+//import "./Doc/css/font-awesome.min.css";
+//import "./Doc/css/main.css";
+//import "./Doc/css/normalize.min.css";
 import "./assets/scss/style.scss";
 import "./assets/scss/_apply-proces.scss";
 import "./assets/scss/_blog_page.scss";
@@ -430,9 +430,9 @@ function Landing() {
       <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
       <script src="./assets/js/plugins.js"></script>
       <script src="./assets/js/main.js"></script>
-      <script src="./assets/Doc/custom.js"></script>
+      {/*<script src="./assets/Doc/custom.js"></script>
       <script src="./assets/Doc/jquery-1.11.0.min.js"></script>
-      <script src="./assets/Doc/jquery.nav.js"></script>
+        <script src="./assets/Doc/jquery.nav.js"></script>*/}
     </div>
   );
 }
