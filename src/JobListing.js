@@ -3,26 +3,20 @@ import React from "react";
 export default function JobListing() {
   return (
     <body>
-      <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-          <div class="preloader-inner position-relative">
-            <div class="preloader-circle"></div>
-            <div class="preloader-img pere-text">
-              <img src="assets/img/logo/logo.png" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
       <header>
-        <div class="header-area header-transparrent">
-          <div class="headder-top header-sticky">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-3 col-md-2">
-                  <div class="logo">
+        <div className="header-area header-transparrent">
+          <div className="headder-top header-sticky">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-lg-3 col-md-2">
+                  <div className="logo">
                     <a
                       href="index.html"
-                      style="display: flex;justify-content: center;align-items: center;"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
                     >
                       <img
                         src="./Doc/img/logo.png"
@@ -30,24 +24,31 @@ export default function JobListing() {
                         width="50px"
                         height="50px"
                       />
-                      <div style="font-family: Muli,sans-serif;color: #F8C630;font-size: 25px;font-weight: 900;">
+                      <div
+                        style={{
+                          fontFamily: "Muli,sans-serif",
+                          color: "#F8C630",
+                          fontSize: "25px",
+                          fontWeight: 900,
+                        }}
+                      >
                         {" "}
                         Cre-Resume{" "}
                       </div>
                     </a>
                   </div>
                 </div>
-                <div class="col-lg-9 col-md-9">
-                  <div class="menu-wrapper">
-                    <div class="main-menu">
-                      <nav class="d-none d-lg-block">
+                <div className="col-lg-9 col-md-9">
+                  <div className="menu-wrapper">
+                    <div className="main-menu">
+                      <nav className="d-none d-lg-block">
                         <ul id="navigation">
                           <li>
                             <a href="index.html">Home</a>
                           </li>
                           <li>
                             <a href="#">Jobs</a>
-                            <ul class="submenu">
+                            <ul className="submenu">
                               <li>
                                 <a href="./createLookingForJobPost.html">
                                   Create looking for job post
@@ -82,18 +83,18 @@ export default function JobListing() {
                         </ul>
                       </nav>
                     </div>
-                    <div class="header-btn d-none f-right d-lg-block">
-                      <a href="register.html" class="btn head-btn1">
+                    <div className="header-btn d-none f-right d-lg-block">
+                      <a href="register.html" className="btn head-btn1">
                         Register
                       </a>
-                      <a href="login.html" class="btn head-btn2">
+                      <a href="login.html" className="btn head-btn2">
                         Login
                       </a>
                     </div>
                   </div>
                 </div>
-                <div class="col-12">
-                  <div class="mobile_menu d-block d-lg-none"></div>
+                <div className="col-12">
+                  <div className="mobile_menu d-block d-lg-none"></div>
                 </div>
               </div>
             </div>
@@ -101,16 +102,17 @@ export default function JobListing() {
         </div>
       </header>
       <main>
-        <div class="slider-area ">
+        <div className="slider-area ">
           <div
-            class="single-slider section-overly slider-height2 d-flex align-items-center"
-            data-background="./Doc/img/find_job.svg"
-            style="background-size: contain;"
+            className="single-slider section-overly slider-height2 d-flex align-items-center jobImage"
+            style={{
+              backgroundSize: "contain",
+            }}
           >
-            <div class="container">
-              <div class="row">
-                <div class="col-xl-12">
-                  <div class="hero-cap text-center">
+            <div className="container">
+              <div className="row">
+                <div className="col-xl-12">
+                  <div className="hero-cap text-center">
                     <h2>List looking for job posts</h2>
                   </div>
                 </div>
@@ -118,18 +120,17 @@ export default function JobListing() {
             </div>
           </div>
         </div>
-        <div class="job-listing-area pt-120 pb-120">
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-3 col-lg-3 col-md-4">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="small-section-tittle2 mb-45">
-                      <div class="ion">
+        <div className="job-listing-area pt-120 pb-120">
+          <div className="container">
+            <div className="row">
+              <div className="col-xl-3 col-lg-3 col-md-4">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="small-section-tittle2 mb-45">
+                      <div className="ion">
                         {" "}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink"
                           width="20px"
                           height="12px"
                         >
@@ -144,12 +145,12 @@ export default function JobListing() {
                     </div>
                   </div>
                 </div>
-                <div class="job-category-listing mb-50">
-                  <div class="single-listing">
-                    <div class="small-section-tittle2">
+                <div className="job-category-listing mb-50">
+                  <div className="single-listing">
+                    <div className="small-section-tittle2">
                       <h4>Job Category</h4>
                     </div>
-                    <div class="select-job-items2">
+                    <div className="select-job-items2">
                       <select name="select">
                         <option value="">Categories</option>
                         <option value="">Frontend Developer</option>
@@ -162,29 +163,33 @@ export default function JobListing() {
                       </select>
                     </div>
                   </div>
-                  <div class="single-listing">
-                    <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
-                      <div class="small-section-tittle2">
+                  <div className="single-listing">
+                    <aside className="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
+                      <div className="small-section-tittle2">
                         <h4>Filter Jobs</h4>
                       </div>
-                      <div class="widgets_inner">
-                        <div class="range_item">
-                          <input type="text" class="js-range-slider" value="" />
-                          <div class="d-flex align-items-center">
-                            <div class="price_text">
+                      <div className="widgets_inner">
+                        <div className="range_item">
+                          <input
+                            type="text"
+                            className="js-range-slider"
+                            value=""
+                          />
+                          <div className="d-flex align-items-center">
+                            <div className="price_text">
                               <p>Price :</p>
                             </div>
-                            <div class="price_value d-flex justify-content-center">
+                            <div className="price_value d-flex justify-content-center">
                               <input
                                 type="text"
-                                class="js-input-from"
+                                className="js-input-from"
                                 id="amount"
                                 readonly
                               />
                               <span>to</span>
                               <input
                                 type="text"
-                                class="js-input-to"
+                                className="js-input-to"
                                 id="amount"
                                 readonly
                               />
@@ -196,14 +201,14 @@ export default function JobListing() {
                   </div>
                 </div>
               </div>
-              <div class="col-xl-9 col-lg-9 col-md-8">
-                <section class="featured-job-area">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="count-job mb-35">
+              <div className="col-xl-9 col-lg-9 col-md-8">
+                <section className="featured-job-area">
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-lg-12">
+                        <div className="count-job mb-35">
                           <span>1 Jobs found</span>
-                          <div class="select-job-items">
+                          <div className="select-job-items">
                             <span>Sort by</span>
                             <select name="select">
                               <option value="">None</option>
@@ -215,9 +220,9 @@ export default function JobListing() {
                         </div>
                       </div>
                     </div>
-                    <div class="single-job-items mb-30">
-                      <div class="job-items">
-                        <div class="company-img">
+                    <div className="single-job-items mb-30">
+                      <div className="job-items">
+                        <div className="company-img">
                           <a href="#">
                             <img
                               src="./Doc/img/apple.jpg"
@@ -227,14 +232,14 @@ export default function JobListing() {
                             />
                           </a>
                         </div>
-                        <div class="job-tittle job-tittle2">
+                        <div className="job-tittle job-tittle2">
                           <a href="#">
                             <h4>Digital Marketer</h4>
                           </a>
                           <ul>
                             <li>Creative Agency</li>
                             <li>
-                              <i class="fas fa-map-marker-alt"></i>Athens,
+                              <i className="fas fa-map-marker-alt"></i>Athens,
                               Greece
                             </li>
                             <li>$3500 - $4000</li>
@@ -242,7 +247,7 @@ export default function JobListing() {
                         </div>
                       </div>
                       <form action="">
-                        <div class="items-link items-link2 f-right">
+                        <div className="items-link items-link2 f-right">
                           <a href="job_details.html">Apply</a>
                           <span>7 hours ago</span>
                         </div>
@@ -256,12 +261,12 @@ export default function JobListing() {
         </div>
       </main>
       <footer>
-        <div class="footer-bottom-area footer-bg">
-          <div class="container">
-            <div class="footer-border">
-              <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-xl-10 col-lg-10 ">
-                  <div class="footer-copy-right">
+        <div className="footer-bottom-area footer-bg">
+          <div className="container">
+            <div className="footer-border">
+              <div className="row d-flex justify-content-between align-items-center">
+                <div className="col-xl-10 col-lg-10 ">
+                  <div className="footer-copy-right">
                     <p>
                       This template is made by{" "}
                       <a href="https://github.com/ufuktunca" target="_blank">

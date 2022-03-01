@@ -21,6 +21,10 @@
   background-image: url("./Doc/img/contact_us.svg");
 }
 
+.jobImage {
+  background-image: url("./Doc/img/find_job.svg");
+}
+
 .jobListingEmployerList {
   background-image: url("./Doc/img/find_job.svg");
 }

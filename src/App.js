@@ -5,6 +5,7 @@ import Login from "./Login";
 import About from "./About";
 import Contact from "./Contact";
 import JobListingEmployer from "./JobListingEmployer";
+import JobListing from "./JobListing";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/job-listing-employer" element={<JobListingEmployer />} />
+        <Route path="/job-listing" element={<JobListing />} />
       </Routes>
     </BrowserRouter>
   );
