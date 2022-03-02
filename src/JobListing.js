@@ -3,104 +3,6 @@ import React from "react";
 export default function JobListing() {
   return (
     <body>
-      <header>
-        <div className="header-area header-transparrent">
-          <div className="headder-top header-sticky">
-            <div className="container">
-              <div className="row align-items-center">
-                <div className="col-lg-3 col-md-2">
-                  <div className="logo">
-                    <a
-                      href="index.html"
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <img
-                        src="./Doc/img/logo.png"
-                        alt=""
-                        width="50px"
-                        height="50px"
-                      />
-                      <div
-                        style={{
-                          fontFamily: "Muli,sans-serif",
-                          color: "#F8C630",
-                          fontSize: "25px",
-                          fontWeight: 900,
-                        }}
-                      >
-                        {" "}
-                        Cre-Resume{" "}
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div className="col-lg-9 col-md-9">
-                  <div className="menu-wrapper">
-                    <div className="main-menu">
-                      <nav className="d-none d-lg-block">
-                        <ul id="navigation">
-                          <li>
-                            <a href="index.html">Home</a>
-                          </li>
-                          <li>
-                            <a href="#">Jobs</a>
-                            <ul className="submenu">
-                              <li>
-                                <a href="./createLookingForJobPost.html">
-                                  Create looking for job post
-                                </a>
-                              </li>
-                              <li>
-                                <a href="./createJobPost.html">
-                                  Create job post
-                                </a>
-                              </li>
-                              <li>
-                                <a href="job_listing.html">
-                                  List looking for job posts
-                                </a>
-                              </li>
-                              <li>
-                                <a href="job_listing_employer.html">
-                                  List job posts
-                                </a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="createCV.html">Create CV</a>
-                          </li>
-                          <li>
-                            <a href="about.html">About</a>
-                          </li>
-                          <li>
-                            <a href="contact.html">Contact</a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                    <div className="header-btn d-none f-right d-lg-block">
-                      <a href="register.html" className="btn head-btn1">
-                        Register
-                      </a>
-                      <a href="login.html" className="btn head-btn2">
-                        Login
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12">
-                  <div className="mobile_menu d-block d-lg-none"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
       <main>
         <div className="slider-area ">
           <div
@@ -260,26 +162,6 @@ export default function JobListing() {
           </div>
         </div>
       </main>
-      <footer>
-        <div className="footer-bottom-area footer-bg">
-          <div className="container">
-            <div className="footer-border">
-              <div className="row d-flex justify-content-between align-items-center">
-                <div className="col-xl-10 col-lg-10 ">
-                  <div className="footer-copy-right">
-                    <p>
-                      This template is made by{" "}
-                      <a href="https://github.com/ufuktunca" target="_blank">
-                        Ufuk Barış Tunca
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
       <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
       <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
       <script src="./assets/js/popper.min.js"></script>

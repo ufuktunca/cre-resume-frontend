@@ -48,104 +48,6 @@ import "./assets/scss/_variables.scss";
 export default function JobListingEmployer() {
   return (
     <body>
-      <header>
-        <div class="header-area header-transparrent">
-          <div class="headder-top header-sticky">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-3 col-md-2">
-                  <div class="logo">
-                    <a
-                      href="index.html"
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <img
-                        src="./Doc/img/logo.png"
-                        alt=""
-                        width="50px"
-                        height="50px"
-                      />
-                      <div
-                        style={{
-                          fontFamily: "Muli,sans-serif",
-                          color: "#F8C630",
-                          fontSize: "25px",
-                          fontWeight: 900,
-                        }}
-                      >
-                        {" "}
-                        Cre-Resume{" "}
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-lg-9 col-md-9">
-                  <div class="menu-wrapper">
-                    <div class="main-menu">
-                      <nav class="d-none d-lg-block">
-                        <ul id="navigation">
-                          <li>
-                            <a href="index.html">Home</a>
-                          </li>
-                          <li>
-                            <a href="#">Jobs</a>
-                            <ul class="submenu">
-                              <li>
-                                <a href="./createLookingForJobPost.html">
-                                  Create looking for job post
-                                </a>
-                              </li>
-                              <li>
-                                <a href="./createJobPost.html">
-                                  Create job post
-                                </a>
-                              </li>
-                              <li>
-                                <a href="job_listing.html">
-                                  List looking for job posts
-                                </a>
-                              </li>
-                              <li>
-                                <a href="job_listing_employer.html">
-                                  List job posts
-                                </a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="createCV.html">Create CV</a>
-                          </li>
-                          <li>
-                            <a href="about.html">About</a>
-                          </li>
-                          <li>
-                            <a href="contact.html">Contact</a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                    <div class="header-btn d-none f-right d-lg-block">
-                      <a href="register.html" class="btn head-btn1">
-                        Register
-                      </a>
-                      <a href="login.html" class="btn head-btn2">
-                        Login
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="mobile_menu d-block d-lg-none"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
       <main>
         <div class="slider-area ">
           <div
@@ -300,26 +202,6 @@ export default function JobListingEmployer() {
           </div>
         </div>
       </main>
-      <footer>
-        <div class="footer-bottom-area footer-bg">
-          <div class="container">
-            <div class="footer-border">
-              <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-xl-10 col-lg-10 ">
-                  <div class="footer-copy-right">
-                    <p>
-                      This template is made by{" "}
-                      <a href="https://github.com/ufuktunca" target="_blank">
-                        Ufuk Barış Tunca
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
       <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
       <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
       <script src="./assets/js/popper.min.js"></script>
