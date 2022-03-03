@@ -38,12 +38,12 @@
 }
 .login-logo {
   position: relative;
-  margin-left: -41.5%;
+  margin-left: -15.5%;
 }
 .login-logo img {
   position: absolute;
   width: 20%;
-  margin-top: 19%;
+  margin-top: 14%;
   background: #010b1d;
   border-radius: 4.5rem;
   padding: 5%;

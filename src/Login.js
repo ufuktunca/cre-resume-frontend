@@ -58,7 +58,12 @@ export default function Login() {
                 borderBottomLeftRadiues: "15px",
               }}
             >
-              <form action="">
+              <form
+                action=""
+                style={{
+                  padding: "0px 12%",
+                }}
+              >
                 <h3>Unemployed User Login</h3>
 
                 <div className="form-group">
@@ -97,7 +102,12 @@ export default function Login() {
               <div className="login-logo">
                 <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
               </div>
-              <form action="">
+              <form
+                action=""
+                style={{
+                  padding: "0px 12%",
+                }}
+              >
                 <h3>Employer User Login</h3>
                 <div className="form-group">
                   <input
