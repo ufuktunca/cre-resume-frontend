@@ -24,7 +24,7 @@ export default function Header() {
                       width="50px"
                       height="50px"
                     />
-                    <div /*style="font-family: Muli,sans-serif;color: #F8C630;font-size: 25px;font-weight: 900;"*/
+                    <div
                       style={{
                         fontFamily: "Muli,sans-serif",
                         color: "#F8C630",
@@ -44,48 +44,46 @@ export default function Header() {
                     <nav className="d-none d-lg-block">
                       <ul id="navigation">
                         <li>
-                          <a href="index.html">Home</a>
+                          <a href="/">Home</a>
                         </li>
                         <li>
                           <a href="">Jobs</a>
                           <ul className="submenu">
                             <li>
-                              <a href="./createLookingForJobPost.html">
+                              <a href="/create-lf-job-post">
                                 Create looking for job post
                               </a>
                             </li>
                             <li>
-                              <a href="./createJobPost.html">Create job post</a>
+                              <a href="/create-job-post">Create job post</a>
                             </li>
                             <li>
-                              <a href="job_listing.html">
+                              <a href="/job-listing-employer">
                                 List looking for job posts
                               </a>
                             </li>
                             <li>
-                              <a href="job_listing_employer.html">
-                                List job posts
-                              </a>
+                              <a href="/job-listing">List job posts</a>
                             </li>
                           </ul>
                         </li>
                         <li>
-                          <a href="createCV.html">Create CV</a>
+                          <a href="/create-cv">Create CV</a>
                         </li>
                         <li>
-                          <a href="about.html">About</a>
+                          <a href="/about">About</a>
                         </li>
                         <li>
-                          <a href="contact.html">Contact</a>
+                          <a href="/contact">Contact</a>
                         </li>
                       </ul>
                     </nav>
                   </div>
                   <div className="header-btn d-none f-right d-lg-block">
-                    <a href="register.html" className="btn head-btn1">
+                    <a href="/register" className="btn head-btn1">
                       Register
                     </a>
-                    <a href="login.html" className="btn head-btn2">
+                    <a href="/login" className="btn head-btn2">
                       Login
                     </a>
                   </div>
