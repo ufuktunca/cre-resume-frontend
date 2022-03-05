@@ -5515,7 +5515,7 @@ form.search-box .search-form a {
   }
 }
 .single-job-items .job-tittle a h4 {
-  color: #28395a;
+  color: #28395a !important;
   font-size: 24px;
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;

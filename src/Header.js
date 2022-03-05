@@ -58,12 +58,12 @@ export default function Header() {
                               <a href="/create-job-post">Create job post</a>
                             </li>
                             <li>
-                              <a href="/job-listing-employer">
+                              <a href="/job-listing">
                                 List looking for job posts
                               </a>
                             </li>
                             <li>
-                              <a href="/job-listing">List job posts</a>
+                              <a href="/job-listing-employer">List job posts</a>
                             </li>
                           </ul>
                         </li>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import "./assets/css/owl.carousel.min.css";
 import "./assets/css/flaticon.css";
@@ -46,6 +47,8 @@ import "./assets/scss/_variables.scss";
 import Footer from "./Footer";
 
 function Landing() {
+  const [categoryOpen, setCategoryOpen] = useState(false);
+
   return (
     <div>
       <main>
@@ -61,7 +64,10 @@ function Landing() {
               <div className="container">
                 <div className="row">
                   <div className="col-xl-6 col-lg-9 col-md-10">
-                    <div className="hero__caption">
+                    <div
+                      className="hero__caption"
+                      style={{ color: "#f8c630 !important" }}
+                    >
                       <h1>Find your job</h1>
                     </div>
                   </div>
@@ -77,17 +83,40 @@ function Landing() {
                           marginLeft: "4px",
                         }}
                       >
-                        <div className="select-itms">
-                          <select name="select" id="select1">
-                            <option value="">Categories</option>
-                            <option value="">Frontend Developer</option>
-                            <option value="">Assistant</option>
-                            <option value="">Mobile Developer</option>
-                            <option value="">Full Stack Developer</option>
-                            <option value="">Data Scientist</option>
-                            <option value="">Devops</option>
-                            <option value="">Product Owner</option>
-                          </select>
+                        <div
+                          className={
+                            categoryOpen ? "nice-select open" : "nice-select"
+                          }
+                          onClick={() => setCategoryOpen(!categoryOpen)}
+                          tabindex="0"
+                        >
+                          <span className="current">Categories</span>
+                          <ul className="list">
+                            <li data-value="" className="option selected">
+                              Categories
+                            </li>
+                            <li data-value="" className="option">
+                              Frontend Developer
+                            </li>
+                            <li data-value="" className="option">
+                              Assistant
+                            </li>
+                            <li data-value="" className="option">
+                              Mobile Developer
+                            </li>
+                            <li data-value="" className="option">
+                              Full Stack Developer
+                            </li>
+                            <li data-value="" className="option">
+                              Data Scientist
+                            </li>
+                            <li data-value="" className="option">
+                              Devops
+                            </li>
+                            <li data-value="" className="option">
+                              Product Owner
+                            </li>
+                          </ul>
                         </div>
                       </div>
                       <div className="search-form">
