@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function JobListing() {
+  const [sortByOpen, setSortByOpen] = useState(false);
+  const [jobCategoryOpen, setJobCategoryOpen] = useState(false);
+
   return (
     <body>
       <main>
@@ -37,7 +40,7 @@ export default function JobListing() {
                           height="12px"
                         >
                           <path
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             fill="rgb(27, 207, 107)"
                             d="M7.778,12.000 L12.222,12.000 L12.222,10.000 L7.778,10.000 L7.778,12.000 ZM-0.000,-0.000 L-0.000,2.000 L20.000,2.000 L20.000,-0.000 L-0.000,-0.000 ZM3.333,7.000 L16.667,7.000 L16.667,5.000 L3.333,5.000 L3.333,7.000 Z"
                           />
@@ -53,16 +56,41 @@ export default function JobListing() {
                       <h4>Job Category</h4>
                     </div>
                     <div className="select-job-items2">
-                      <select name="select">
-                        <option value="">Categories</option>
-                        <option value="">Frontend Developer</option>
-                        <option value="">Assistant</option>
-                        <option value="">Mobile Developer</option>
-                        <option value="">Full Stack Developer</option>
-                        <option value="">Data Scientist</option>
-                        <option value="">Devops</option>
-                        <option value="">Product Owner</option>
-                      </select>
+                      <div
+                        className={
+                          jobCategoryOpen ? "nice-select open" : "nice-select"
+                        }
+                        tabIndex="0"
+                        onClick={() => setJobCategoryOpen(!jobCategoryOpen)}
+                      >
+                        <span className="current">Categories</span>
+                        <ul className="list">
+                          <li data-value="" className="option selected focus">
+                            Categories
+                          </li>
+                          <li data-value="" className="option">
+                            Frontend Developer
+                          </li>
+                          <li data-value="" className="option">
+                            Assistant
+                          </li>
+                          <li data-value="" className="option">
+                            Mobile Developer
+                          </li>
+                          <li data-value="" className="option">
+                            Full Stack Developer
+                          </li>
+                          <li data-value="" className="option">
+                            Data Scientist
+                          </li>
+                          <li data-value="" className="option">
+                            Devops
+                          </li>
+                          <li data-value="" className="option">
+                            Product Owner
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                   <div className="single-listing">
@@ -72,10 +100,77 @@ export default function JobListing() {
                       </div>
                       <div className="widgets_inner">
                         <div className="range_item">
+                          <span className="irs js-irs-0">
+                            <span className="irs">
+                              <span className="irs-line" tabIndex="-1">
+                                <span className="irs-line-left"></span>
+                                <span className="irs-line-mid"></span>
+                                <span className="irs-line-right"></span>
+                              </span>
+                              <span
+                                className="irs-min"
+                                style={{ visibility: "hidden" }}
+                              >
+                                tk. 0
+                              </span>
+                              <span
+                                className="irs-max"
+                                style={{ visibility: "visible" }}
+                              >
+                                tk. 1.000
+                              </span>
+                              <span
+                                className="irs-from"
+                                style={{ visibility: "visible", left: "0%" }}
+                              >
+                                tk. 0
+                              </span>
+                              <span
+                                className="irs-to"
+                                style={{
+                                  visibility: "visible",
+                                  left: "35.2601%",
+                                }}
+                              >
+                                tk. 500
+                              </span>
+                              <span
+                                className="irs-single"
+                                style={{
+                                  visibility: "hidden",
+                                  left: "4.33526%",
+                                }}
+                              >
+                                tk. 0 - tk. 500
+                              </span>
+                            </span>
+                            <span className="irs-grid"></span>
+                            <span
+                              className="irs-bar"
+                              style={{ left: "4.33526%", width: "45.6647%" }}
+                            ></span>
+                            <span
+                              className="irs-shadow shadow-from"
+                              style={{ display: "none" }}
+                            ></span>
+                            <span
+                              className="irs-shadow shadow-to"
+                              style={{ display: "none" }}
+                            ></span>
+                            <span
+                              className="irs-slider from"
+                              style={{ left: "0%" }}
+                            ></span>
+                            <span
+                              className="irs-slider to type_last"
+                              style={{ left: "45.6647%" }}
+                            ></span>
+                          </span>
                           <input
                             type="text"
-                            className="js-range-slider"
+                            className="js-range-slider irs-hidden-input"
                             value=""
+                            readOnly=""
                           />
                           <div className="d-flex align-items-center">
                             <div className="price_text">
@@ -86,14 +181,16 @@ export default function JobListing() {
                                 type="text"
                                 className="js-input-from"
                                 id="amount"
-                                readonly
+                                readOnly=""
+                                value={100}
                               />
                               <span>to</span>
                               <input
                                 type="text"
                                 className="js-input-to"
                                 id="amount"
-                                readonly
+                                readOnly=""
+                                value={1000}
                               />
                             </div>
                           </div>
@@ -112,12 +209,32 @@ export default function JobListing() {
                           <span>1 Jobs found</span>
                           <div className="select-job-items">
                             <span>Sort by</span>
-                            <select name="select">
-                              <option value="">None</option>
-                              <option value="">job list</option>
-                              <option value="">job list</option>
-                              <option value="">job list</option>
-                            </select>
+                            <div
+                              className={
+                                sortByOpen ? "nice-select open" : "nice-select"
+                              }
+                              tabIndex="0"
+                              onClick={() => setSortByOpen(!sortByOpen)}
+                            >
+                              <span className="current">None</span>
+                              <ul className="list">
+                                <li
+                                  data-value=""
+                                  className="option selected focus"
+                                >
+                                  None
+                                </li>
+                                <li data-value="" className="option">
+                                  job list
+                                </li>
+                                <li data-value="" className="option">
+                                  job list
+                                </li>
+                                <li data-value="" className="option">
+                                  job list
+                                </li>
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       </div>
