@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import "./assets/css/owl.carousel.min.css";
 import "./assets/css/flaticon.css";
@@ -46,6 +46,8 @@ import "./assets/scss/style.scss";
 import "./assets/scss/_variables.scss";
 
 export default function Register() {
+  const [name, setName] = useState("");
+
   return (
     <body>
       <main>
@@ -89,7 +91,12 @@ export default function Register() {
                     type="text"
                     className="form-control"
                     placeholder="Name *"
-                    /*value=""*/
+                    value={name}
+                    onChange={(e) =>
+                      e.target.value.match("^[a-zA-Z ]*$") != null
+                        ? setName(e.target.value)
+                        : ""
+                    }
                     name="name"
                   />
                 </div>
