@@ -47,7 +47,9 @@ import "./assets/scss/_variables.scss";
 
 export default function Register() {
   const [name, setName] = useState("");
-
+  const [surname, setSurname] = useState("");
+  const [userType, setUserType] = useState("employer");
+  console.log(userType);
   return (
     <body>
       <main>
@@ -122,6 +124,12 @@ export default function Register() {
                     placeholder="Surname *"
                     /*value=""*/
                     name="surname"
+                    value={surname}
+                    onChange={(e) =>
+                      e.target.value.match("^[a-zA-Z ]*$") != null
+                        ? setSurname(e.target.value)
+                        : ""
+                    }
                   />
                 </div>
                 <div
@@ -141,7 +149,7 @@ export default function Register() {
                   }}
                 >
                   <input
-                    type="text"
+                    type="email"
                     className="form-control"
                     placeholder="Email *"
                     /*value=""*/
@@ -189,7 +197,7 @@ export default function Register() {
                   }}
                 >
                   <input
-                    type="text"
+                    type="password"
                     className="form-control"
                     placeholder="Confirm Password *"
                     /*value=""*/
@@ -202,7 +210,8 @@ export default function Register() {
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio1"
-                    /*value="employer"*/
+                    value={userType === "employer"}
+                    onClick={() => setUserType("employer")}
                   />
                   <label
                     className="form-check-label"
@@ -222,6 +231,8 @@ export default function Register() {
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio2"
+                    checked={userType === "unemployed"}
+                    onClick={() => setUserType("unemployed")}
                     //value="unemployed"
                   />
                   <label
