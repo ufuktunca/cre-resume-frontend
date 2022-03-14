@@ -91,7 +91,7 @@ export default function About() {
                       are an employee looking for job also you can create
                       looking for job post.
                     </p>
-                    <a href="./login.html" className="btn post-btn">
+                    <a href="/create-job-post" className="btn post-btn">
                       Post a job
                     </a>
                   </div>

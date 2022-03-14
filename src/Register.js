@@ -210,7 +210,7 @@ export default function Register() {
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio1"
-                    value={userType === "employer"}
+                    checked={userType === "employer"}
                     onClick={() => setUserType("employer")}
                   />
                   <label

@@ -269,7 +269,7 @@ function Landing() {
                 <div className="cv-caption text-center">
                   <p className="pera1"></p>
                   <p className="pera2">Create Your Online Resume!</p>
-                  <a href="./createCV.html" className="border-btn2 border-btn4">
+                  <a href="/create-cv" className="border-btn2 border-btn4">
                     Make your cv
                   </a>
                 </div>

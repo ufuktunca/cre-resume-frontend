@@ -14,6 +14,8 @@ import "./assets/css/style.css";
 
 export default function CreateCV() {
   const [stage, setStage] = useState(1);
+  const [nameAndSurname, setNameAndSurname] = useState("");
+  const [hobbies, setHobbies] = useState("");
 
   return (
     <body>
@@ -77,18 +79,30 @@ export default function CreateCV() {
                           type="text"
                           name="nameSurname"
                           placeholder="Name and Surname *"
+                          onChange={(e) =>
+                            e.target.value.match("^[a-zA-Z ]*$") != null
+                              ? setNameAndSurname(e.target.value)
+                              : ""
+                          }
+                          value={nameAndSurname}
                         />
                         <label className="fieldlabels">Phone Number: *</label>
                         <input
-                          type="password"
+                          type="number"
                           name="phoneNumber"
                           placeholder="Phone Number *"
                         />
                         <label className="fieldlabels">Your Hobbies: *</label>
                         <input
-                          type="password"
+                          type="text"
                           name="hobbies"
-                          placeholder="Confirm Password"
+                          placeholder="Hobbis"
+                          onChange={(e) =>
+                            e.target.value.match("^[a-zA-Z ]*$") != null
+                              ? setHobbies(e.target.value)
+                              : ""
+                          }
+                          value={hobbies}
                         />
                         <label className="fieldlabels">
                           Upload Your Photo:

@@ -10,8 +10,7 @@ export default function Header() {
               <div className="col-lg-3 col-md-2">
                 <div className="logo">
                   <a
-                    href="index.html"
-                    //style="display: flex;justify-content: center;align-items: center;"
+                    href="/"
                     style={{
                       display: "flex",
                       justifyContent: "center",
