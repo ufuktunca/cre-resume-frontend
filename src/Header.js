@@ -1,6 +1,8 @@
 import React from "react";
+import { GetCookie, SetCookie } from "./api/user";
 
 export default function Header() {
+  console.log(GetCookie("auth"), typeof GetCookie("auth"));
   return (
     <header>
       <div className="header-area header-transparrent">
@@ -48,14 +50,18 @@ export default function Header() {
                         <li>
                           <a href="">Jobs</a>
                           <ul className="submenu">
-                            <li>
-                              <a href="/create-lf-job-post">
-                                Create looking for job post
-                              </a>
-                            </li>
-                            <li>
-                              <a href="/create-job-post">Create job post</a>
-                            </li>
+                            {GetCookie("userType") === "unemployed" && (
+                              <li>
+                                <a href="/create-lf-job-post">
+                                  Create looking for job post
+                                </a>
+                              </li>
+                            )}
+                            {GetCookie("userType") === "employer" && (
+                              <li>
+                                <a href="/create-job-post">Create job post</a>
+                              </li>
+                            )}
                             <li>
                               <a href="/job-listing">
                                 List looking for job posts
@@ -75,16 +81,59 @@ export default function Header() {
                         <li>
                           <a href="/contact">Contact</a>
                         </li>
+                        {GetCookie("auth") !== undefined && (
+                          <li>
+                            <a href="">My Cre-Resume</a>
+                            <ul className="submenu">
+                              <li>
+                                <a href="/create-lf-job-post">
+                                  Create looking for job post
+                                </a>
+                              </li>
+                              <li>
+                                <a href="/create-job-post">Create job post</a>
+                              </li>
+                              <li>
+                                <a href="/job-listing">
+                                  List looking for job posts
+                                </a>
+                              </li>
+                              <li>
+                                <a href="/job-listing-employer">
+                                  List job posts
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                        )}
                       </ul>
                     </nav>
                   </div>
                   <div className="header-btn d-none f-right d-lg-block">
-                    <a href="/register" className="btn head-btn1">
-                      Register
-                    </a>
-                    <a href="/login" className="btn head-btn2">
-                      Login
-                    </a>
+                    {GetCookie("auth") === undefined ? (
+                      <>
+                        <a href="/register" className="btn head-btn1">
+                          Register
+                        </a>
+                        <a href="/login" className="btn head-btn2">
+                          Login
+                        </a>
+                      </>
+                    ) : (
+                      <a
+                        href="/"
+                        className="btn head-btn1"
+                        onClick={() =>
+                          SetCookie(
+                            "auth",
+                            null,
+                            "Thu, 01 Jan 1970 00:00:01 GMT"
+                          )
+                        }
+                      >
+                        Logout
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./assets/scss/style.scss";
 import "./App.css";
 import "./assets/css/owl.carousel.min.css";
@@ -44,11 +44,106 @@ import "./assets/scss/_support-company.scss";
 import "./assets/scss/_team.scss";
 import "./assets/scss/_testimonial.scss";
 import "./assets/scss/_variables.scss";
+import {
+  LoginHandler,
+  SetCookie,
+  ReSendHandler,
+  ActivationHandler,
+} from "./api/user";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [employerEmail, setEmployerEmail] = useState("");
+  const [employerPassword, setEmployerPassword] = useState("");
+  const [error, setError] = useState(true);
+  const [registered, setRegistered] = useState("");
+
+  useEffect(() => {
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
+    let userID = params.get("userID");
+    activation(userID);
+  }, []);
+
+  const reSend = async () => {
+    const result = await ReSendHandler(email == "" ? employerEmail : email);
+    if (result.status == 200) {
+      setError("mailSend");
+    } else {
+      setError("unkown");
+    }
+  };
+
+  const activation = async (userID) => {
+    const result = await ActivationHandler(userID);
+    if (result.status == 200) {
+      setRegistered("true");
+    }
+  };
+
+  const login = async (e, email, password, loginType) => {
+    e.preventDefault();
+    const result = await LoginHandler(email, password, loginType);
+
+    if (result.status != 200) {
+      setError(result.status);
+      return;
+    }
+
+    SetCookie(
+      "auth",
+      result.data.token,
+      new Date(new Date().getTime() + 60 * 60 * 59 * 55 * 12).toGMTString()
+    );
+    SetCookie(
+      "userType",
+      loginType,
+      new Date(new Date().getTime() + 60 * 60 * 59 * 55 * 12).toGMTString()
+    );
+    window.location.href = "/";
+  };
+
   return (
     <body>
       <main>
+        <Snackbar open={error == 500} autoHideDuration={6000}>
+          <Alert
+            onClose={() => setError(0)}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            Your password or email is not correct !!!
+          </Alert>
+        </Snackbar>
+        <Snackbar open={registered == "true"} autoHideDuration={6000}>
+          <Alert
+            onClose={() => setRegistered("")}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            You have successfully registered please check your email for
+            actiovation mail.
+          </Alert>
+        </Snackbar>
+        <Snackbar open={error == 401} autoHideDuration={6000}>
+          <Alert
+            onClose={() => setError(0)}
+            severity="warning"
+            sx={{ width: "100%" }}
+          >
+            You need to activate your account. If you want to to re send email
+            please
+            <div
+              style={{ textDecoration: "underline", cursor: "pointer" }}
+              onClick={() => reSend()}
+            >
+              click here
+            </div>
+          </Alert>
+        </Snackbar>
         <div className="container login-container">
           <div className="row">
             <div
@@ -63,6 +158,7 @@ export default function Login() {
                 style={{
                   padding: "0px 12%",
                 }}
+                onSubmit={(e) => login(e, email, password, "unemployed")}
               >
                 <h3>Unemployed User Login</h3>
 
@@ -71,8 +167,10 @@ export default function Login() {
                     type="text"
                     className="form-control"
                     placeholder="Email *"
-                    // value=""
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     name="email"
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -80,14 +178,17 @@ export default function Login() {
                     type="password"
                     className="form-control"
                     placeholder="Password *"
-                    //value=""
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     name="password"
+                    required
                   />
                 </div>
                 <div className="form-group">
                   <input
                     type="submit"
-                    className="btnSubmit" /*value="Login"*/
+                    className="btnSubmit"
+                    style={{ cursor: "pointer" }}
                   />
                 </div>
               </form>
@@ -107,6 +208,9 @@ export default function Login() {
                 style={{
                   padding: "0px 12%",
                 }}
+                onSubmit={(e) =>
+                  login(e, employerEmail, employerPassword, "employer")
+                }
               >
                 <h3>Employer User Login</h3>
                 <div className="form-group">
@@ -114,8 +218,10 @@ export default function Login() {
                     type="text"
                     className="form-control"
                     placeholder="Email *"
-                    // value=""
+                    value={employerEmail}
                     name="email"
+                    onChange={(e) => setEmployerEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -123,14 +229,17 @@ export default function Login() {
                     type="password"
                     className="form-control"
                     placeholder="Password *"
-                    //value=""
+                    value={employerPassword}
+                    onChange={(e) => setEmployerPassword(e.target.value)}
                     name="password"
+                    required
                   />
                 </div>
                 <div className="form-group">
                   <input
                     type="submit"
-                    className="btnSubmit" /*value="Login"*/
+                    className="btnSubmit"
+                    style={{ cursor: "pointer" }}
                   />
                 </div>
               </form>

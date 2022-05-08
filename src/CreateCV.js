@@ -16,6 +16,63 @@ export default function CreateCV() {
   const [stage, setStage] = useState(1);
   const [nameAndSurname, setNameAndSurname] = useState("");
   const [hobbies, setHobbies] = useState("");
+  const [education, setEducation] = useState([
+    { startDate: "", endDate: "", description: "", department: "" },
+  ]);
+  const [experience, setExperience] = useState([
+    {
+      startDate: "",
+      endDate: "",
+      company: "",
+      title: "",
+      description: "",
+    },
+  ]);
+
+  const setEducationVariable = (index, variable, value) => {
+    let educations = [...education];
+    switch (variable) {
+      case "startDate":
+        educations[index].startDate = value;
+        break;
+      case "endDate":
+        educations[index].endDate = value;
+        break;
+      case "department":
+        educations[index].department = value;
+        break;
+      case "description":
+        educations[index].description = value;
+        break;
+      default:
+        break;
+    }
+    setEducation(educations);
+  };
+
+  const setExperienceVariable = (index, variable, value) => {
+    let experiences = [...experience];
+    switch (variable) {
+      case "startDate":
+        experiences[index].startDate = value;
+        break;
+      case "endDate":
+        experiences[index].endDate = value;
+        break;
+      case "company":
+        experiences[index].company = value;
+        break;
+      case "title":
+        experiences[index].title = value;
+        break;
+      case "description":
+        experiences[index].description = value;
+        break;
+      default:
+        break;
+    }
+    setExperience(experiences);
+  };
 
   return (
     <body>
@@ -133,19 +190,178 @@ export default function CreateCV() {
                             <h2 className="steps">Step 2 - 4</h2>
                           </div>
                         </div>
-                        <label className="fieldlabels">
-                          Graduated Schools: *
-                        </label>
-                        <textarea type="text" name="educationPasr">
-                          {" "}
-                        </textarea>
-                        <label className="fieldlabels">
-                          Job Experiences: *
-                        </label>
-                        <textarea type="text" name="pastExperience">
-                          {" "}
-                        </textarea>
+                        <label className="fieldlabels">Education: *</label>
+                        {education.map((education, index) => (
+                          <>
+                            <div style={{ display: "flex" }}>
+                              <input
+                                placeholder="Start Date"
+                                value={education.startDate}
+                                onChange={(e) =>
+                                  setEducationVariable(
+                                    index,
+                                    "startDate",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                              <input
+                                placeholder="End Date"
+                                value={education.endDate}
+                                onChange={(e) =>
+                                  setEducationVariable(
+                                    index,
+                                    "endDate",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                            <input
+                              placeholder="Department"
+                              value={education.department}
+                              onChange={(e) =>
+                                setEducationVariable(
+                                  index,
+                                  "department",
+                                  e.target.value
+                                )
+                              }
+                            />
+                            <div>
+                              <textarea
+                                type="text"
+                                name="educationPasr"
+                                placeholder="Description"
+                                id="educationDescription"
+                                value={education.description}
+                                onChange={(e) =>
+                                  setEducationVariable(
+                                    index,
+                                    "description",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                          </>
+                        ))}
+                        <button
+                          type="button"
+                          name="next"
+                          className="addMoreButton"
+                          onClick={() =>
+                            setEducation([
+                              ...education,
+                              {
+                                startDate: "",
+                                endDate: "",
+                                description: "",
+                                department: "",
+                              },
+                            ])
+                          }
+                          disabled={
+                            education[education.length - 1].startDate.length <=
+                            0
+                          }
+                        >
+                          Add More
+                        </button>
+                        <div
+                          className="fieldlabels"
+                          style={{ marginTop: "40px", paddingBottom: "10px" }}
+                        >
+                          Job Experiences:
+                        </div>
+                        {experience.map((exp, index) => (
+                          <>
+                            <div style={{ display: "flex" }}>
+                              <input
+                                placeholder="Start Date"
+                                value={exp.startDate}
+                                onChange={(e) =>
+                                  setExperienceVariable(
+                                    index,
+                                    "startDate",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                              <input
+                                placeholder="End Date"
+                                value={exp.endDate}
+                                onChange={(e) =>
+                                  setExperienceVariable(
+                                    index,
+                                    "endDate",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                            <div style={{ display: "flex" }}>
+                              <input
+                                placeholder="Company"
+                                value={exp.company}
+                                onChange={(e) =>
+                                  setExperienceVariable(
+                                    index,
+                                    "company",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                              <input
+                                placeholder="Title"
+                                value={exp.title}
+                                onChange={(e) =>
+                                  setExperienceVariable(
+                                    index,
+                                    "title",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                            <div>
+                              <textarea
+                                type="text"
+                                name="educationPasr"
+                                placeholder="Description"
+                                id="educationDescription"
+                                value={exp.description}
+                                onChange={(e) =>
+                                  setExperienceVariable(
+                                    index,
+                                    "description",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                          </>
+                        ))}
                       </div>{" "}
+                      <button
+                        type="button"
+                        name="next"
+                        className="addMoreButton"
+                        onClick={() =>
+                          setExperience([
+                            ...experience,
+                            {
+                              startDate: "",
+                              endDate: "",
+                              company: "",
+                              title: "",
+                              description: "",
+                            },
+                          ])
+                        }
+                      >
+                        Add More
+                      </button>
                       <button
                         type="button"
                         name="next"

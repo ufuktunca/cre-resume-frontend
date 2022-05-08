@@ -44,15 +44,70 @@ import "./assets/scss/_team.scss";
 import "./assets/scss/_testimonial.scss";
 import "./assets/scss/style.scss";
 import "./assets/scss/_variables.scss";
+import { RegisterHandler } from "./api/user";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [userType, setUserType] = useState("employer");
-  console.log(userType);
+  const [error, setError] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  var passwordRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[.@$!%*#?&])[A-Za-z\d.@$!%*#?&]{8,}$/g;
+
+  const register = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setError("confirmPasswordError");
+      setErrorMessage("Your passwords doesnt match please check them again!");
+      return;
+    }
+
+    if (passwordRegex.exec(password) == null) {
+      setError("regexError");
+      setErrorMessage(
+        "Your password should contain minimum eight characters, at least one letter, one number and one special character!"
+      );
+      return;
+    }
+
+    const resp = await RegisterHandler(
+      name,
+      surname,
+      email,
+      password,
+      userType
+    );
+
+    if (resp.status == 400) {
+      setError("emailError");
+      setErrorMessage(
+        "This email is already registered. Please try with another email."
+      );
+    }
+
+    window.location.href = "/login?registered=true";
+    return;
+  };
+
   return (
     <body>
       <main>
+        <Snackbar open={error !== 0} autoHideDuration={6000}>
+          <Alert
+            onClose={() => setError(0)}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            {errorMessage}
+          </Alert>
+        </Snackbar>
         <div className="container login-container">
           <div className="row">
             <div className="col-md-3"></div>
@@ -62,7 +117,7 @@ export default function Register() {
                 borderRadius: "15px",
               }}
             >
-              <form action="">
+              <form action="" onSubmit={register}>
                 <h3
                   style={{
                     fontSize: "35px",
@@ -93,7 +148,9 @@ export default function Register() {
                     type="text"
                     className="form-control"
                     placeholder="Name *"
+                    minLength={3}
                     value={name}
+                    required
                     onChange={(e) =>
                       e.target.value.match("^[a-zA-Z ]*$") != null
                         ? setName(e.target.value)
@@ -122,8 +179,9 @@ export default function Register() {
                     type="text"
                     className="form-control"
                     placeholder="Surname *"
-                    /*value=""*/
                     name="surname"
+                    required
+                    minLength={3}
                     value={surname}
                     onChange={(e) =>
                       e.target.value.match("^[a-zA-Z ]*$") != null
@@ -152,8 +210,10 @@ export default function Register() {
                     type="email"
                     className="form-control"
                     placeholder="Email *"
-                    /*value=""*/
+                    value={email}
                     name="email"
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div
@@ -176,8 +236,11 @@ export default function Register() {
                     type="password"
                     className="form-control"
                     placeholder="Password *"
-                    /*value=""*/
+                    minLength={8}
+                    value={password}
+                    required
                     name="password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div
@@ -200,8 +263,11 @@ export default function Register() {
                     type="password"
                     className="form-control"
                     placeholder="Confirm Password *"
-                    /*value=""*/
+                    value={confirmPassword}
+                    required
+                    minLength={8}
                     name="confirmPassword"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </div>
                 <div className="form-check form-check-inline">

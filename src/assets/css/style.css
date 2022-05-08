@@ -6391,7 +6391,7 @@ form.search-box .search-form a {
   padding: 8px 15px 8px 15px;
   border: 1px solid #ccc;
   border-radius: 0px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   margin-top: 2px;
   width: 100%;
   box-sizing: border-box;
@@ -6477,6 +6477,23 @@ form.search-box .search-form a {
 .fieldlabels {
   color: gray;
   text-align: left;
+}
+
+.addMoreButton{
+  width: 100px;
+  background: #6c63ff;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 2px 5px;
+  margin: 5px 0px 5px 5px;
+  float: right;
+}
+
+#educationDescription:last-child{
+  
 }
 
 #progressbar {

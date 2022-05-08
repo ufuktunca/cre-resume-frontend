@@ -11,6 +11,7 @@ import Footer from "./Footer";
 import CreateCV from "./CreateCV";
 import CreateLFJobPost from "./CreateLFJobPost";
 import CreateJobPost from "./CreateJobPost";
+import { GetCookie } from "./api/user";
 
 function App() {
   return (
@@ -25,12 +26,36 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route
             path="/job-listing-employer"
-            element={<JobListingEmployer />}
+            element={
+              GetCookie("auth") === undefined ? (
+                <Login />
+              ) : (
+                <JobListingEmployer />
+              )
+            }
           />
-          <Route path="/job-listing" element={<JobListing />} />
-          <Route path="/create-cv" element={<CreateCV />} />
-          <Route path="/create-lf-job-post" element={<CreateLFJobPost />} />
-          <Route path="/create-job-post" element={<CreateJobPost />} />
+          <Route
+            path="/job-listing"
+            element={
+              GetCookie("auth") === undefined ? <Login /> : <JobListing />
+            }
+          />
+          <Route
+            path="/create-cv"
+            element={GetCookie("auth") === undefined ? <Login /> : <CreateCV />}
+          />
+          <Route
+            path="/create-lf-job-post"
+            element={
+              GetCookie("auth") === undefined ? <Login /> : <CreateLFJobPost />
+            }
+          />
+          <Route
+            path="/create-job-post"
+            element={
+              GetCookie("auth") === undefined ? <Login /> : <CreateJobPost />
+            }
+          />
         </Routes>
       </BrowserRouter>
       <Footer />
