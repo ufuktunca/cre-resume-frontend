@@ -11,6 +11,51 @@ import "./assets/css/themify-icons.css";
 import "./assets/css/slick.css";
 import "./assets/css/nice-select.css";
 import "./assets/css/style.css";
+import "./App.css";
+import "./assets/css/owl.carousel.min.css";
+import "./assets/css/flaticon.css";
+import "./assets/css/price_rangs.css";
+import "./assets/css/slicknav.css";
+import "./assets/css/animate.min.css";
+import "./assets/css/magnific-popup.css";
+import "./assets/css/fontawesome-all.min.css";
+import "./assets/css/themify-icons.css";
+import "./assets/css/slick.css";
+import "./assets/css/nice-select.css";
+import "./assets/css/style.css";
+import "./assets/css/bootstrap.min.css";
+import "./assets/css/responsive.css";
+//import "./Doc/css/font-awesome.min.css";
+//import "./Doc/css/main.css";
+//import "./Doc/css/normalize.min.css";
+import "./assets/scss/style.scss";
+import "./assets/scss/_apply-proces.scss";
+import "./assets/scss/_blog_page.scss";
+import "./assets/scss/_blog.scss";
+import "./assets/scss/_bradcam.scss";
+import "./assets/scss/_color.scss";
+import "./assets/scss/_common.scss";
+import "./assets/scss/_contact.scss";
+import "./assets/scss/_cv-online.scss";
+import "./assets/scss/_elements.scss";
+import "./assets/scss/_extend.scss";
+import "./assets/scss/_featured-Jobs.scss";
+import "./assets/scss/_footer.scss";
+import "./assets/scss/_h1-hero.scss";
+import "./assets/scss/_headerMenu.scss";
+import "./assets/scss/_job_details.scss";
+import "./assets/scss/_job_listing.scss";
+import "./assets/scss/_mixins.scss";
+import "./assets/scss/_overlay.scss";
+import "./assets/scss/_pagination.scss";
+import "./assets/scss/_recent.scss";
+import "./assets/scss/_services_section.scss";
+import "./assets/scss/_services.scss";
+import "./assets/scss/_support-company.scss";
+import "./assets/scss/_team.scss";
+import "./assets/scss/_testimonial.scss";
+import "./assets/scss/style.scss";
+import "./assets/scss/_variables.scss";
 
 export default function CreateCV() {
   const [stage, setStage] = useState(1);
@@ -25,6 +70,7 @@ export default function CreateCV() {
   const [hobbies, setHobbies] = useState([]);
   const [languages, setLanguages] = useState([]);
   const [skills, setSkills] = useState([]);
+  const [categoryOpen, setCategoryOpen] = useState("");
 
   const setEducationVariable = (index, variable, value) => {
     let educations = [...education];
@@ -45,6 +91,21 @@ export default function CreateCV() {
         break;
     }
     setEducation(educations);
+  };
+
+  const setLanguageVariable = (index, variable, value) => {
+    let tempLanguages = [...languages];
+    switch (variable) {
+      case "language":
+        tempLanguages[index].language = value;
+        break;
+      case "level":
+        tempLanguages[index].level = value;
+        break;
+      default:
+        break;
+    }
+    setLanguages(tempLanguages);
   };
 
   const setSocialMediaIndex = (index, variable) => {
@@ -71,6 +132,8 @@ export default function CreateCV() {
     setSkills(skill);
   };
 
+  console.log(languages);
+
   const setExperienceVariable = (index, variable, value) => {
     let experiences = [...experience];
     switch (variable) {
@@ -96,7 +159,6 @@ export default function CreateCV() {
   };
 
   const increseStage = (e) => {
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     e.preventDefault();
     setStage(stage + 1);
   };
@@ -195,11 +257,135 @@ export default function CreateCV() {
                             required
                             placeholder="Phone Number *"
                           />
+                          <label className="fieldlabels">About Me:</label>
+                          <textarea required placeholder="About Me" />
                           <label
                             className="fieldlabels"
                             style={{
-                              marginRight: "200px",
+                              marginRight: "210px",
                               marginBottom: "28px",
+                            }}
+                          >
+                            Languages:
+                          </label>
+                          {languages.map((language, index) => (
+                            <div style={{ display: "flex" }}>
+                              <input
+                                type="text"
+                                placeholder="Language"
+                                required
+                                onChange={(e) =>
+                                  e.target.value.match("^[a-zA-Z ]*$") != null
+                                    ? setLanguageVariable(
+                                        index,
+                                        "language",
+                                        e.target.value
+                                      )
+                                    : ""
+                                }
+                                value={language.language}
+                              />
+                              <div
+                                className={
+                                  categoryOpen === index
+                                    ? "nice-select open"
+                                    : "nice-select"
+                                }
+                                onClick={() =>
+                                  setCategoryOpen(
+                                    categoryOpen === index ? "" : index
+                                  )
+                                }
+                                tabindex="0"
+                              >
+                                <span className="current">
+                                  {language.level && language.level != ""
+                                    ? language.level
+                                    : "Levels"}
+                                </span>
+                                <ul className="list">
+                                  <li
+                                    data-value=""
+                                    className="option selected"
+                                    onClick={() =>
+                                      setLanguageVariable(index, "level", "A1")
+                                    }
+                                  >
+                                    A1
+                                  </li>
+                                  <li
+                                    data-value=""
+                                    className="option"
+                                    onClick={() =>
+                                      setLanguageVariable(index, "level", "A2")
+                                    }
+                                  >
+                                    A2
+                                  </li>
+                                  <li
+                                    data-value=""
+                                    className="option"
+                                    onClick={() =>
+                                      setLanguageVariable(index, "level", "B1")
+                                    }
+                                  >
+                                    B1
+                                  </li>
+                                  <li
+                                    data-value=""
+                                    className="option"
+                                    onClick={() =>
+                                      setLanguageVariable(index, "level", "B2")
+                                    }
+                                  >
+                                    B2
+                                  </li>
+                                  <li
+                                    data-value=""
+                                    className="option"
+                                    onClick={() =>
+                                      setLanguageVariable(index, "level", "C1")
+                                    }
+                                  >
+                                    C1
+                                  </li>
+                                  <li
+                                    data-value=""
+                                    className="option"
+                                    onClick={() =>
+                                      setLanguageVariable(index, "level", "C2")
+                                    }
+                                  >
+                                    C2
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          ))}
+                          <button
+                            type="button"
+                            className="addMoreButton"
+                            style={{ marginTop: "20px" }}
+                            onClick={() =>
+                              setLanguages([
+                                ...languages,
+                                { language: "", level: "" },
+                              ])
+                            }
+                            disabled={
+                              languages[languages.length - 1] != undefined &&
+                              (languages[languages.length - 1].language == "" ||
+                                languages[languages.length - 1].level == "")
+                            }
+                          >
+                            Add More
+                          </button>
+                          <label
+                            className="fieldlabels"
+                            style={{
+                              marginRight: "344px",
+                              marginBottom: "28px",
+                              marginTop: "-3px",
                             }}
                           >
                             Your Hobbies:
@@ -220,7 +406,7 @@ export default function CreateCV() {
                           <button
                             type="button"
                             className="addMoreButton"
-                            style={{ marginTop: "19px" }}
+                            style={{ marginTop: "0px" }}
                             onClick={() => setHobbies([...hobbies, ""])}
                             disabled={hobbies[hobbies.length - 1] == ""}
                           >
@@ -228,36 +414,8 @@ export default function CreateCV() {
                           </button>
                           <label
                             className="fieldlabels"
-                            style={{
-                              marginRight: "210px",
-                              marginBottom: "28px",
-                            }}
+                            style={{ marginTop: "10px" }}
                           >
-                            Languages:
-                          </label>
-                          {languages.map((hobbie, index) => (
-                            <input
-                              type="text"
-                              placeholder="Language"
-                              required
-                              onChange={(e) =>
-                                e.target.value.match("^[a-zA-Z ]*$") != null
-                                  ? setLanguagesIndex(index, e.target.value)
-                                  : ""
-                              }
-                              value={hobbie}
-                            />
-                          ))}
-                          <button
-                            type="button"
-                            className="addMoreButton"
-                            style={{ marginTop: "30px" }}
-                            onClick={() => setLanguages([...languages, ""])}
-                            disabled={languages[languages.length - 1] == ""}
-                          >
-                            Add More
-                          </button>
-                          <label className="fieldlabels">
                             Upload Your Photo:
                           </label>
                           <input required type="file" accept="image/*" />
@@ -361,10 +519,10 @@ export default function CreateCV() {
                               ])
                             }
                             disabled={
-                              education[education.length - 1].startDate == "" &&
-                              education[education.length - 1].endDate == "" &&
+                              education[education.length - 1].startDate == "" ||
+                              education[education.length - 1].endDate == "" ||
                               education[education.length - 1].description ==
-                                "" &&
+                                "" ||
                               education[education.length - 1].department == ""
                             }
                           >
@@ -467,13 +625,15 @@ export default function CreateCV() {
                             }
                             disabled={
                               experience[experience.length - 1] &&
-                              experience[experience.length - 1].startDate ==
-                                "" &&
-                              experience[experience.length - 1].endDate == "" &&
-                              experience[experience.length - 1].company == "" &&
-                              experience[experience.length - 1].title == "" &&
-                              experience[experience.length - 1].description ==
-                                ""
+                              (experience[experience.length - 1].startDate ==
+                                "" ||
+                                experience[experience.length - 1].endDate ==
+                                  "" ||
+                                experience[experience.length - 1].company ==
+                                  "" ||
+                                experience[experience.length - 1].title == "" ||
+                                experience[experience.length - 1].description ==
+                                  "")
                             }
                           >
                             Add More
