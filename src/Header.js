@@ -75,20 +75,12 @@ export default function Header() {
                         <li>
                           <a href="/create-cv">Create CV</a>
                         </li>
-                        <li>
-                          <a href="/about">About</a>
-                        </li>
-                        <li>
-                          <a href="/contact">Contact</a>
-                        </li>
                         {GetCookie("auth") !== undefined && (
                           <li>
                             <a href="">My Cre-Resume</a>
                             <ul className="submenu">
                               <li>
-                                <a href="/create-lf-job-post">
-                                  Create looking for job post
-                                </a>
+                                <a href="/my-cvs">My CVs</a>
                               </li>
                               <li>
                                 <a href="/create-job-post">Create job post</a>
@@ -106,6 +98,12 @@ export default function Header() {
                             </ul>
                           </li>
                         )}
+                        <li>
+                          <a href="/about">About</a>
+                        </li>
+                        <li>
+                          <a href="/contact">Contact</a>
+                        </li>
                       </ul>
                     </nav>
                   </div>

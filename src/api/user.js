@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const localURL = "http://localhost:8080";
+export const localURL = "http://localhost:8080";
 
 export const LoginHandler = async (email, password, loginType) => {
   try {

@@ -56,6 +56,8 @@ import "./assets/scss/_team.scss";
 import "./assets/scss/_testimonial.scss";
 import "./assets/scss/style.scss";
 import "./assets/scss/_variables.scss";
+import FileBase64 from "react-file-base64";
+import { CVHandler } from "./api/cv";
 
 export default function CreateCV() {
   const [stage, setStage] = useState(1);
@@ -63,7 +65,7 @@ export default function CreateCV() {
   const [jobTitle, setJobTitle] = useState("");
   const [email, setEmail] = useState("");
   const [education, setEducation] = useState([
-    { startDate: "", endDate: "", description: "", department: "" },
+    { startDate: "", endDate: "", description: "", school: "" },
   ]);
   const [experience, setExperience] = useState([]);
   const [socialMediaLinks, setSocialMediaLinks] = useState([]);
@@ -71,6 +73,12 @@ export default function CreateCV() {
   const [languages, setLanguages] = useState([]);
   const [skills, setSkills] = useState([]);
   const [categoryOpen, setCategoryOpen] = useState("");
+  const [phoenNumber, setPhoneNumber] = useState("");
+  const [aboutMe, setAboutMe] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [cvName, setCVName] = useState("");
+  const [github, setGithub] = useState("");
+  const [linkedin, setLinkedin] = useState("");
 
   const setEducationVariable = (index, variable, value) => {
     let educations = [...education];
@@ -84,8 +92,8 @@ export default function CreateCV() {
       case "department":
         educations[index].department = value;
         break;
-      case "description":
-        educations[index].description = value;
+      case "school":
+        educations[index].school = value;
         break;
       default:
         break;
@@ -120,19 +128,11 @@ export default function CreateCV() {
     setHobbies(hobbis);
   };
 
-  const setLanguagesIndex = (index, variable) => {
-    let language = [...languages];
-    language[index] = variable;
-    setLanguages(language);
-  };
-
   const setSkillsIndex = (index, variable) => {
     let skill = [...skills];
     skill[index] = variable;
     setSkills(skill);
   };
-
-  console.log(languages);
 
   const setExperienceVariable = (index, variable, value) => {
     let experiences = [...experience];
@@ -161,6 +161,26 @@ export default function CreateCV() {
   const increseStage = (e) => {
     e.preventDefault();
     setStage(stage + 1);
+  };
+
+  const createCV = async () => {
+    const result = await CVHandler(
+      nameAndSurname,
+      cvName,
+      aboutMe,
+      jobTitle,
+      phoenNumber,
+      email,
+      hobbies,
+      photo,
+      education,
+      experience,
+      github,
+      linkedin,
+      socialMediaLinks,
+      languages,
+      skills
+    );
   };
 
   return (
@@ -256,9 +276,15 @@ export default function CreateCV() {
                             type="number"
                             required
                             placeholder="Phone Number *"
+                            value={phoenNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
                           />
                           <label className="fieldlabels">About Me:</label>
-                          <textarea required placeholder="About Me" />
+                          <textarea
+                            placeholder="About Me"
+                            value={aboutMe}
+                            onChange={(e) => setAboutMe(e.target.value)}
+                          />
                           <label
                             className="fieldlabels"
                             style={{
@@ -418,7 +444,9 @@ export default function CreateCV() {
                           >
                             Upload Your Photo:
                           </label>
-                          <input required type="file" accept="image/*" />
+                          <FileBase64
+                            onDone={(e) => setPhoto(e.base64.split(",")[1])}
+                          />
                         </div>{" "}
                         <input
                           type={"submit"}
@@ -485,17 +513,17 @@ export default function CreateCV() {
                                 }
                               />
                               <div>
-                                <textarea
+                                <input
                                   type="text"
                                   name="educationPasr"
-                                  placeholder="Description"
-                                  id="educationDescription"
+                                  placeholder="School"
+                                  id="educationSchool"
                                   required
-                                  value={education.description}
+                                  value={education.school}
                                   onChange={(e) =>
                                     setEducationVariable(
                                       index,
-                                      "description",
+                                      "school",
                                       e.target.value
                                     )
                                   }
@@ -513,16 +541,15 @@ export default function CreateCV() {
                                 {
                                   startDate: "",
                                   endDate: "",
-                                  description: "",
                                   department: "",
+                                  school: "",
                                 },
                               ])
                             }
                             disabled={
                               education[education.length - 1].startDate == "" ||
                               education[education.length - 1].endDate == "" ||
-                              education[education.length - 1].description ==
-                                "" ||
+                              education[education.length - 1].school == "" ||
                               education[education.length - 1].department == ""
                             }
                           >
@@ -697,17 +724,28 @@ export default function CreateCV() {
                               <h2 className="steps">Step 3 - 4</h2>
                             </div>
                           </div>
+                          <label className="fieldlabels">Name of CV: *</label>
+                          <input
+                            type="text"
+                            placeholder="Name of CV"
+                            required
+                            value={cvName}
+                            onChange={(e) => setCVName(e.target.value)}
+                          />
                           <label className="fieldlabels">Github: </label>
                           <input
                             type="text"
                             name="github"
                             placeholder="Github"
+                            value={github}
+                            onChange={(e) => setGithub(e.target.value)}
                           />
                           <label className="fieldlabels">Linkedin: </label>
                           <input
-                            type="password"
                             name="linkedin"
                             placeholder="Linkedin"
+                            value={linkedin}
+                            onChange={(e) => setLinkedin(e.target.value)}
                           />
                           <label className="fieldlabels">
                             Other Social Media Link:{" "}
@@ -741,8 +779,9 @@ export default function CreateCV() {
                         </div>{" "}
                         <input
                           type={"submit"}
-                          value="Next"
+                          value="Finish"
                           className="next action-button"
+                          onClick={() => createCV()}
                         />
                         <button
                           type="button"

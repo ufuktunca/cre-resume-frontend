@@ -1,16 +1,43 @@
 import axios from "axios";
 import { GetCookie } from "./user";
 
-const localURL = "http://localhost:8080";
+export const localURL = "http://localhost:8080";
 
-export const CVHandler = async (email, password) => {
-  console.log(email, password);
-
+export const CVHandler = async (
+  nameSurname,
+  cvName,
+  aboutMe,
+  jobTitle,
+  phoneNumber,
+  email,
+  hobbies,
+  photo,
+  education,
+  experience,
+  github,
+  linkedin,
+  otherSM,
+  languages,
+  skills
+) => {
   const response = await axios.post(
-    `${localURL}/cv`,
+    `${localURL}/user/cv`,
     {
+      nameSurname,
+      cvName,
+      aboutMe,
+      jobTitle,
+      phoneNumber,
       email,
-      password,
+      hobbies,
+      photo,
+      education,
+      experience,
+      github,
+      linkedin,
+      otherSM,
+      languages,
+      skills,
     },
     {
       headers: {
@@ -20,4 +47,14 @@ export const CVHandler = async (email, password) => {
   );
 
   return response;
+};
+
+export const GetUserCVsHandler = async () => {
+  const resp = await axios.get(`${localURL}/user/cv`, {
+    headers: {
+      Authorization: GetCookie("auth"),
+    },
+  });
+
+  return resp.data;
 };

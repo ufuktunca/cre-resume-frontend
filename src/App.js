@@ -11,6 +11,7 @@ import Footer from "./Footer";
 import CreateCV from "./CreateCV";
 import CreateLFJobPost from "./CreateLFJobPost";
 import CreateJobPost from "./CreateJobPost";
+import MyCVs from "./MyCVs";
 import { GetCookie } from "./api/user";
 
 function App() {
@@ -43,6 +44,10 @@ function App() {
           <Route
             path="/create-cv"
             element={GetCookie("auth") === undefined ? <Login /> : <CreateCV />}
+          />
+          <Route
+            path="/my-cvs"
+            element={GetCookie("auth") === undefined ? <Login /> : <MyCVs />}
           />
           <Route
             path="/create-lf-job-post"

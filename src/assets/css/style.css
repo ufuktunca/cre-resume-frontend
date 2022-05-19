@@ -3410,6 +3410,27 @@ hr {
 .contact-section {
   padding: 130px 0 100px;
 }
+
+
+.centeralize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+}
+
+.cv {
+  border: 4px solid #4B5595;
+  transition: all 0.5s;
+  border-radius: 5px;
+}
+
+.cv:hover{
+  
+  border-bottom: 10px solid #252a4a;
+  border-left: 10px solid #252a4a;
+}
+
 @media (max-width: 991px) {
   .contact-section {
     padding: 70px 0 40px;
