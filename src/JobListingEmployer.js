@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { GetJobPostsHandler } from "./api/jobPost";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
 import "./App.css";
 import "./assets/css/owl.carousel.min.css";
 import "./assets/css/flaticon.css";
@@ -44,10 +47,57 @@ import "./assets/scss/_team.scss";
 import "./assets/scss/_testimonial.scss";
 import "./assets/scss/style.scss";
 import "./assets/scss/_variables.scss";
+import { height } from "@mui/system";
+
+function valuetext(value) {
+  return `${value}°C`;
+}
 
 export default function JobListingEmployer() {
   const [sortByOpen, setSortByOpen] = useState(false);
   const [jobCategoryOpen, setJobCategoryOpen] = useState(false);
+  const [jobPosts, setJobPosts] = useState([]);
+  const [value2, setValue2] = React.useState([3000, 15000]);
+  const [sort, setSort] = useState({ name: "None", type: "" });
+  const [category, setCategory] = useState({ name: "Categories", type: "" });
+  const [limit, setLimit] = useState(0);
+
+  const minDistance = 10;
+
+  const handleChange2 = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (newValue[1] - newValue[0] < minDistance) {
+      if (activeThumb === 0) {
+        const clamped = Math.min(newValue[0], 100 - minDistance);
+        setValue2([clamped, clamped + minDistance]);
+      } else {
+        const clamped = Math.max(newValue[1], minDistance);
+        setValue2([clamped - minDistance, clamped]);
+      }
+    } else {
+      setValue2(newValue);
+    }
+  };
+
+  const getJobPosts = async () => {
+    const response = await GetJobPostsHandler("employer");
+    if (response.status == 200) {
+      setJobPosts(response.data);
+    }
+  };
+
+  const calculateTime = (time) => {
+    const date1 = new Date();
+    const date2 = new Date(time);
+    return Math.round((date1 - date2) / (1000 * 3600));
+  };
+
+  useEffect(() => {
+    getJobPosts();
+  }, []);
 
   return (
     <body>
@@ -106,30 +156,96 @@ export default function JobListingEmployer() {
                         tabIndex="0"
                         onClick={() => setJobCategoryOpen(!jobCategoryOpen)}
                       >
-                        <span className="current">Categories</span>
+                        <span className="current">{category.name}</span>
                         <ul className="list">
-                          <li data-value="" className="option selected focus">
+                          <li
+                            data-value=""
+                            className="option selected focus"
+                            onClick={() =>
+                              setCategory({ name: "Categories", type: "" })
+                            }
+                          >
                             Categories
                           </li>
-                          <li data-value="" className="option">
+                          <li
+                            data-value=""
+                            className="option"
+                            onClick={() =>
+                              setCategory({
+                                name: "Frontend Developer",
+                                type: "Frontend Developer",
+                              })
+                            }
+                          >
                             Frontend Developer
                           </li>
-                          <li data-value="" className="option">
+                          <li
+                            data-value=""
+                            className="option"
+                            onClick={() =>
+                              setCategory({
+                                name: "Assistant",
+                                type: "Assistant",
+                              })
+                            }
+                          >
                             Assistant
                           </li>
-                          <li data-value="" className="option">
+                          <li
+                            data-value=""
+                            className="option"
+                            onClick={() =>
+                              setCategory({
+                                name: "Mobile Developer",
+                                type: "Mobile Developer",
+                              })
+                            }
+                          >
                             Mobile Developer
                           </li>
-                          <li data-value="" className="option">
+                          <li
+                            data-value=""
+                            className="option"
+                            onClick={() =>
+                              setCategory({
+                                name: "Full Stack Developer",
+                                type: "Full Stack Developer",
+                              })
+                            }
+                          >
                             Full Stack Developer
                           </li>
-                          <li data-value="" className="option">
+                          <li
+                            data-value=""
+                            className="option"
+                            onClick={() =>
+                              setCategory({
+                                name: "Data Scientist",
+                                type: "Data Scientist",
+                              })
+                            }
+                          >
                             Data Scientist
                           </li>
-                          <li data-value="" className="option">
+                          <li
+                            data-value=""
+                            className="option"
+                            onClick={() =>
+                              setCategory({ name: "Devops", type: "Devops" })
+                            }
+                          >
                             Devops
                           </li>
-                          <li data-value="" className="option">
+                          <li
+                            data-value=""
+                            className="option"
+                            onClick={() =>
+                              setCategory({
+                                name: "Product Owner",
+                                type: "Product Owner",
+                              })
+                            }
+                          >
                             Product Owner
                           </li>
                         </ul>
@@ -143,77 +259,24 @@ export default function JobListingEmployer() {
                       </div>
                       <div className="widgets_inner">
                         <div className="range_item">
-                          <span className="irs js-irs-0">
-                            <span className="irs">
-                              <span className="irs-line" tabIndex="-1">
-                                <span className="irs-line-left"></span>
-                                <span className="irs-line-mid"></span>
-                                <span className="irs-line-right"></span>
-                              </span>
-                              <span
-                                className="irs-min"
-                                style={{ visibility: "hidden" }}
-                              >
-                                tk. 0
-                              </span>
-                              <span
-                                className="irs-max"
-                                style={{ visibility: "visible" }}
-                              >
-                                tk. 1.000
-                              </span>
-                              <span
-                                className="irs-from"
-                                style={{ visibility: "visible", left: "0%" }}
-                              >
-                                tk. 0
-                              </span>
-                              <span
-                                className="irs-to"
-                                style={{
-                                  visibility: "visible",
-                                  left: "35.2601%",
-                                }}
-                              >
-                                tk. 500
-                              </span>
-                              <span
-                                className="irs-single"
-                                style={{
-                                  visibility: "hidden",
-                                  left: "4.33526%",
-                                }}
-                              >
-                                tk. 0 - tk. 500
-                              </span>
-                            </span>
-                            <span className="irs-grid"></span>
-                            <span
-                              className="irs-bar"
-                              style={{ left: "4.33526%", width: "45.6647%" }}
-                            ></span>
-                            <span
-                              className="irs-shadow shadow-from"
-                              style={{ display: "none" }}
-                            ></span>
-                            <span
-                              className="irs-shadow shadow-to"
-                              style={{ display: "none" }}
-                            ></span>
-                            <span
-                              className="irs-slider from"
-                              style={{ left: "0%" }}
-                            ></span>
-                            <span
-                              className="irs-slider to type_last"
-                              style={{ left: "45.6647%" }}
-                            ></span>
-                          </span>
+                          <Box sx={{ width: 175 }}>
+                            <Slider
+                              getAriaLabel={() => "Minimum distance shift"}
+                              value={value2}
+                              onChange={handleChange2}
+                              valueLabelDisplay="auto"
+                              getAriaValueText={valuetext}
+                              disableSwap
+                              min={0}
+                              max={50000}
+                            />
+                          </Box>
                           <input
                             type="text"
                             className="js-range-slider irs-hidden-input"
-                            value=""
+                            value="600"
                             readOnly=""
+                            onClick={(e) => console.log(e.target.value)}
                           />
                           <div className="d-flex align-items-center">
                             <div className="price_text">
@@ -225,7 +288,10 @@ export default function JobListingEmployer() {
                                 className="js-input-from"
                                 id="amount"
                                 readOnly=""
-                                value={100}
+                                value={value2[0]}
+                                onChange={(e) =>
+                                  setValue2([e.target.value, value2[1]])
+                                }
                               />
                               <span>to</span>
                               <input
@@ -233,7 +299,10 @@ export default function JobListingEmployer() {
                                 className="js-input-to"
                                 id="amount"
                                 readOnly=""
-                                value={1000}
+                                value={value2[1]}
+                                onChange={(e) =>
+                                  setValue2([value2[0], e.target.value])
+                                }
                               />
                             </div>
                           </div>
@@ -249,7 +318,7 @@ export default function JobListingEmployer() {
                     <div className="row">
                       <div className="col-lg-12">
                         <div className="count-job mb-35">
-                          <span>1 Jobs found</span>
+                          <span>{jobPosts.length} Jobs found</span>
                           <div className="select-job-items">
                             <span>Sort by</span>
                             <div
@@ -259,22 +328,49 @@ export default function JobListingEmployer() {
                               tabIndex="0"
                               onClick={() => setSortByOpen(!sortByOpen)}
                             >
-                              <span className="current">None</span>
+                              <span className="current">{sort.name}</span>
                               <ul className="list">
                                 <li
                                   data-value=""
                                   className="option selected focus"
+                                  onClick={() =>
+                                    setSort({ name: "None", type: "" })
+                                  }
                                 >
                                   None
                                 </li>
-                                <li data-value="" className="option">
-                                  job list
+                                <li
+                                  data-value=""
+                                  className="option"
+                                  onClick={() =>
+                                    setSort({ name: "Salary", type: "salary" })
+                                  }
+                                >
+                                  Salary
                                 </li>
-                                <li data-value="" className="option">
-                                  job list
+                                <li
+                                  data-value=""
+                                  className="option"
+                                  onClick={() =>
+                                    setSort({
+                                      name: "Location",
+                                      type: "location",
+                                    })
+                                  }
+                                >
+                                  Location
                                 </li>
-                                <li data-value="" className="option">
-                                  job list
+                                <li
+                                  data-value=""
+                                  className="option"
+                                  onClick={() =>
+                                    setSort({
+                                      name: "Company",
+                                      type: "company",
+                                    })
+                                  }
+                                >
+                                  Company
                                 </li>
                               </ul>
                             </div>
@@ -282,39 +378,86 @@ export default function JobListingEmployer() {
                         </div>
                       </div>
                     </div>
-                    <div className="single-job-items mb-30">
-                      <div className="job-items">
-                        <div className="company-img">
-                          <a href="#">
-                            <img
-                              src="./Doc/img/apple.jpg"
-                              width="75"
-                              height="75"
-                              alt=""
-                            />
-                          </a>
+                    {jobPosts.map((post, index) => {
+                      return index < limit ? (
+                        <div className="single-job-items mb-30">
+                          <div className="job-items">
+                            <div className="company-img">
+                              <a href="#">
+                                <img
+                                  src={`data:image/png;base64,${post.image}`}
+                                  width="75"
+                                  height="75"
+                                  alt=""
+                                />
+                              </a>
+                            </div>
+                            <div className="job-tittle job-tittle2">
+                              <a href="#">
+                                <h4>{post.title}</h4>
+                              </a>
+                              <ul>
+                                <li>{post.company}</li>
+                                <li>
+                                  <i className="fas fa-map-marker-alt"></i>
+                                  {post.location}
+                                </li>
+                                <li>
+                                  {Math.abs(post.salary - 1500)} -{" "}
+                                  {post.salary + 1500}
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <form action="">
+                            <div className="items-link items-link2 f-right">
+                              <a
+                                onClick={() => calculateTime(post.createdAt)}
+                                style={{ cursor: "pointer" }}
+                              >
+                                Apply
+                              </a>
+                              <span>
+                                {calculateTime(post.createdAt) > 24
+                                  ? `${Math.round(
+                                      calculateTime(post.createdAt) / 24
+                                    )} days ago`
+                                  : `${calculateTime(
+                                      post.createdAt
+                                    )} hours ago`}{" "}
+                                hours ago
+                              </span>
+                            </div>
+                          </form>
                         </div>
-                        <div className="job-tittle job-tittle2">
-                          <a href="#">
-                            <h4>Digital Marketer</h4>
-                          </a>
-                          <ul>
-                            <li>Creative Agency</li>
-                            <li>
-                              <i className="fas fa-map-marker-alt"></i>Athens,
-                              Greece
-                            </li>
-                            <li>$3500 - $4000</li>
-                          </ul>
-                        </div>
+                      ) : (
+                        <></>
+                      );
+                    })}
+                    {limit < jobPosts.length && (
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <button
+                          style={{
+                            backgroundColor: "#8b92dd",
+                            border: "none",
+                            height: "25%",
+                            fontFamily: "Muli, sans-serif",
+                            cursor: "pointer",
+                            width: "350px",
+                            height: "40px",
+                          }}
+                          onClick={() => setLimit(limit + 10)}
+                        >
+                          Show More
+                        </button>
                       </div>
-                      <form action="">
-                        <div className="items-link items-link2 f-right">
-                          <a href="job_details.html">Apply</a>
-                          <span>7 hours ago</span>
-                        </div>
-                      </form>
-                    </div>
+                    )}
                   </div>
                 </section>
               </div>

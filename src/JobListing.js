@@ -1,8 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { GetJobPostsHandler } from "./api/jobPost";
 
 export default function JobListing() {
   const [sortByOpen, setSortByOpen] = useState(false);
   const [jobCategoryOpen, setJobCategoryOpen] = useState(false);
+  const [jobPosts, setJobPosts] = useState([]);
+
+  const getJobPosts = async () => {
+    const response = await GetJobPostsHandler("unemployed");
+    if (response.status == 200) {
+      setJobPosts(response.data);
+    }
+  };
+
+  useEffect(() => {
+    getJobPosts();
+  }, []);
 
   return (
     <body>
@@ -206,7 +219,7 @@ export default function JobListing() {
                     <div className="row">
                       <div className="col-lg-12">
                         <div className="count-job mb-35">
-                          <span>1 Jobs found</span>
+                          <span>{jobPosts.length} Jobs found</span>
                           <div className="select-job-items">
                             <span>Sort by</span>
                             <div

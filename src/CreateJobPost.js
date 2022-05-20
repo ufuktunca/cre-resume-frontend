@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import FileBase64 from "react-file-base64";
 import { CreateJobPostHandler } from "./api/jobPost";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
 
 export default function CreateJobPost() {
   const [title, setTitle] = useState("");
@@ -11,6 +13,7 @@ export default function CreateJobPost() {
   const [image, setImage] = useState("");
   const [currency, setCurrency] = useState("");
   const [company, setCompany] = useState("");
+  const [requestResponse, setRequestResponse] = useState({});
 
   const createJobPost = async (e) => {
     e.preventDefault();
@@ -25,11 +28,46 @@ export default function CreateJobPost() {
       currency,
       "employer"
     );
+
+    if (response.status == 201) {
+      setTitle("");
+      setCompany("");
+      setContent("");
+      setSalary(0);
+      setCategory("");
+      setLocation("");
+      setImage("");
+      setCurrency("");
+      setRequestResponse({
+        status: "success",
+        message: "Job post successfully created",
+      });
+    } else {
+      setRequestResponse({
+        status: "error",
+        message: "Some error occur while creating Job post!",
+      });
+    }
   };
 
   return (
     <body>
       <main>
+        <Snackbar
+          open={
+            requestResponse.status == "success" ||
+            requestResponse.status == "error"
+          }
+          autoHideDuration={6000}
+        >
+          <Alert
+            onClose={() => setRequestResponse({})}
+            severity={requestResponse.status}
+            sx={{ width: "100%" }}
+          >
+            {requestResponse.message}
+          </Alert>
+        </Snackbar>
         <div className="container login-container">
           <div className="row">
             <div className="col-md-3"></div>

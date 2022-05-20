@@ -39,3 +39,13 @@ export const CreateJobPostHandler = async (
     return err.response;
   }
 };
+
+export const GetJobPostsHandler = async (postType) => {
+  const resp = await axios.get(`${localURL}/jobPost/${postType}`, {
+    headers: {
+      Authorization: GetCookie("auth"),
+    },
+  });
+
+  return resp;
+};
