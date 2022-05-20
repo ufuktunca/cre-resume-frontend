@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import FileBase64 from "react-file-base64";
+import { CreateJobPostHandler } from "./api/jobPost";
 
 export default function CreateLFJobPost() {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [salary, setSalary] = useState("");
+  const [category, setCategory] = useState("");
+  const [location, setLocation] = useState("");
+  const [image, setImage] = useState("");
+  const [currency, setCurrency] = useState("");
+
+  const createJobPost = async (e) => {
+    e.preventDefault();
+    const response = await CreateJobPostHandler(
+      title,
+      "",
+      content,
+      salary,
+      category,
+      location,
+      image,
+      currency,
+      "unemployed"
+    );
+  };
+
   return (
     <body>
       <main>
@@ -11,7 +36,7 @@ export default function CreateLFJobPost() {
               className="col-md-6 login-form-2"
               style={{ borderRadius: "15px" }}
             >
-              <form action="">
+              <form action="" onSubmit={(e) => createJobPost(e)}>
                 <h3>Create Looking For Job Post</h3>
                 <div
                   className="form-group"
@@ -33,8 +58,10 @@ export default function CreateLFJobPost() {
                     type="text"
                     className="form-control"
                     placeholder="Title *"
-                    value=""
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     name="title"
+                    required
                   />
                 </div>
                 <div
@@ -57,8 +84,10 @@ export default function CreateLFJobPost() {
                     type="text"
                     className="form-control"
                     placeholder="Content *"
-                    value=""
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
                     name="content"
+                    required
                   >
                     {" "}
                   </textarea>
@@ -79,13 +108,33 @@ export default function CreateLFJobPost() {
                     marginBottom: "0.8rem !important",
                   }}
                 >
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Salary *"
-                    value=""
-                    name="salary"
-                  />
+                  <div style={{ display: "flex" }}>
+                    {" "}
+                    <input
+                      type="number"
+                      className="form-control"
+                      placeholder="Salary *"
+                      value={salary}
+                      onChange={(e) => setSalary(parseInt(e.target.value))}
+                      name="salary"
+                      required
+                    />
+                    <select
+                      className="form-control"
+                      name="currency"
+                      style={{ width: "100px" }}
+                      value={currency}
+                      onChange={(e) => setCurrency(e.target.value)}
+                    >
+                      <option value="$">$</option>
+                      <option value="€">€</option>
+                      <option value="£">£</option>
+                      <option value="₺">₺</option>
+                      <option value="B$">B$</option>
+                      <option value="RD$">RD$</option>
+                      <option value="S$">S$</option>
+                    </select>
+                  </div>
                 </div>
                 <div
                   className="form-group"
@@ -105,15 +154,23 @@ export default function CreateLFJobPost() {
                   }}
                 >
                   <div>
-                    <select className="form-control" name="category">
-                      <option value="">Categories</option>
-                      <option value="">Frontend Developer</option>
-                      <option value="">Assistant</option>
-                      <option value="">Mobile Developer</option>
-                      <option value="">Full Stack Developer</option>
-                      <option value="">Data Scientist</option>
-                      <option value="">Devops</option>
-                      <option value="">Product Owner</option>
+                    <select
+                      className="form-control"
+                      name="category"
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                    >
+                      <option value="Frontend Developer">
+                        Frontend Developer
+                      </option>
+                      <option value="Assistant">Assistant</option>
+                      <option value="Mobile Developer">Mobile Developer</option>
+                      <option value="Full Stack Developer">
+                        Full Stack Developer
+                      </option>
+                      <option value="Data Scientist">Data Scientist</option>
+                      <option value="Devops">Devops</option>
+                      <option value="Product Owner">Product Owner</option>
                     </select>
                   </div>
                 </div>
@@ -138,8 +195,10 @@ export default function CreateLFJobPost() {
                     type="text"
                     className="form-control"
                     placeholder="Location *"
-                    value=""
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
                     name="location"
+                    required
                   />
                 </div>
                 <div
@@ -158,7 +217,10 @@ export default function CreateLFJobPost() {
                     marginBottom: "0.8rem !important",
                   }}
                 >
-                  <input type="file" name="image" accept="image/*" />
+                  <FileBase64
+                    onDone={(e) => setImage(e.base64.split(",")[1])}
+                    required
+                  />
                 </div>
                 <div className="form-group" style={{ marginTop: "30px" }}>
                   <input
