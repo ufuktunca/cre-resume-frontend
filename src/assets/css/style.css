@@ -519,6 +519,10 @@ hr {
   margin: 0;
 }
 
+.datePicker .MuiFormControl-root {
+  width: 100%;
+}
+
 .showMore {
   border: 1px solid #8b92dd;
   color: white;

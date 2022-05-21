@@ -26,7 +26,14 @@ export const ReSendHandler = async (email) => {
   }
 };
 
-export const RegisterHandler = async (name, surname, email, password, type) => {
+export const RegisterHandler = async (
+  name,
+  surname,
+  email,
+  password,
+  type,
+  birthDate
+) => {
   try {
     const resp = await axios.post(`${localURL}/register`, {
       name,
@@ -34,6 +41,7 @@ export const RegisterHandler = async (name, surname, email, password, type) => {
       email,
       password,
       type,
+      birthDate,
     });
     return resp;
   } catch (err) {

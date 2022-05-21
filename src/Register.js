@@ -47,6 +47,11 @@ import "./assets/scss/_variables.scss";
 import { RegisterHandler } from "./api/user";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
+import "react-datepicker/dist/react-datepicker.css";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import TextField from "@mui/material/TextField";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -57,6 +62,7 @@ export default function Register() {
   const [userType, setUserType] = useState("employer");
   const [error, setError] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+  const [startDate, setStartDate] = useState(new Date("01-01-1980"));
 
   var passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[.@$!%*#?&])[A-Za-z\d.@$!%*#?&]{8,}$/g;
@@ -77,12 +83,21 @@ export default function Register() {
       return;
     }
 
+    let bDate = String(startDate).split(" ");
+
+    if (bDate[3] > "2005") {
+      setError("bDateError");
+      setErrorMessage("You need to be older than 18 years old.");
+      return;
+    }
+
     const resp = await RegisterHandler(
       name,
       surname,
       email,
       password,
-      userType
+      userType,
+      bDate[1] + " " + bDate[2] + " " + bDate[3]
     );
 
     if (resp.status == 400) {
@@ -95,6 +110,8 @@ export default function Register() {
     window.location.href = "/login?registered=true";
     return;
   };
+
+  console.log(startDate);
 
   return (
     <body>
@@ -269,6 +286,41 @@ export default function Register() {
                     name="confirmPassword"
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
+                </div>
+                <div
+                  className="form-group"
+                  style={{
+                    marginBottom: "0.8rem !important",
+                  }}
+                >
+                  <div href="#" className="btnForgetPwd" /*value=""*/>
+                    Birth Date *
+                  </div>
+                </div>
+                <div
+                  className="form-group"
+                  style={{
+                    marginBottom: "0.8rem !important",
+                  }}
+                >
+                  <div
+                    style={{ backgroundColor: "white" }}
+                    className="datePicker"
+                  >
+                    <LocalizationProvider
+                      dateAdapter={AdapterDateFns}
+                      style={{ width: "100%" }}
+                    >
+                      <DatePicker
+                        value={startDate}
+                        onChange={(newValue) => {
+                          setStartDate(newValue);
+                        }}
+                        renderInput={(params) => <TextField {...params} />}
+                        style={{ width: "100%" }}
+                      />
+                    </LocalizationProvider>
+                  </div>
                 </div>
                 <div className="form-check form-check-inline">
                   <input

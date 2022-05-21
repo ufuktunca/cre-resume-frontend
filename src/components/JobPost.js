@@ -65,7 +65,6 @@ export default function JobPost({ post, calculateTime, index }) {
             {calculateTime(post.createdAt) > 24
               ? `${Math.round(calculateTime(post.createdAt) / 24)} days ago`
               : `${calculateTime(post.createdAt)} hours ago`}{" "}
-            hours ago
           </span>
         </div>
       </form>
