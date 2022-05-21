@@ -83,17 +83,15 @@ export default function Header() {
                                 <a href="/my-cvs">My CVs</a>
                               </li>
                               <li>
-                                <a href="/create-job-post">Create job post</a>
-                              </li>
-                              <li>
-                                <a href="/job-listing">
-                                  List looking for job posts
+                                <a href="/create-job-post">
+                                  My Looking For Job Posts
                                 </a>
                               </li>
                               <li>
-                                <a href="/job-listing-employer">
-                                  List job posts
-                                </a>
+                                <a href="/job-listing">My Job Posts</a>
+                              </li>
+                              <li>
+                                <a href="/job-listing-employer">My Applies</a>
                               </li>
                             </ul>
                           </li>

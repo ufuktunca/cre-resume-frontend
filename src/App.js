@@ -31,14 +31,24 @@ function App() {
               GetCookie("auth") === undefined ? (
                 <Login />
               ) : (
-                <JobListingEmployer />
+                <JobListingEmployer
+                  title={"List Job Posts"}
+                  postType={"employer"}
+                />
               )
             }
           />
           <Route
             path="/job-listing"
             element={
-              GetCookie("auth") === undefined ? <Login /> : <JobListing />
+              GetCookie("auth") === undefined ? (
+                <Login />
+              ) : (
+                <JobListingEmployer
+                  title={"List Looking For Job Posts"}
+                  postType={"unemployed"}
+                />
+              )
             }
           />
           <Route

@@ -48,19 +48,20 @@ import "./assets/scss/_testimonial.scss";
 import "./assets/scss/style.scss";
 import "./assets/scss/_variables.scss";
 import { height } from "@mui/system";
+import JobPost from "./components/JobPost";
 
 function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function JobListingEmployer() {
+export default function JobListingEmployer({ postType, title }) {
   const [sortByOpen, setSortByOpen] = useState(false);
   const [jobCategoryOpen, setJobCategoryOpen] = useState(false);
   const [jobPosts, setJobPosts] = useState([]);
   const [value2, setValue2] = React.useState([3000, 15000]);
   const [sort, setSort] = useState({ name: "None", type: "" });
   const [category, setCategory] = useState({ name: "Categories", type: "" });
-  const [limit, setLimit] = useState(0);
+  const [limit, setLimit] = useState(10);
 
   const minDistance = 10;
 
@@ -83,7 +84,7 @@ export default function JobListingEmployer() {
   };
 
   const getJobPosts = async () => {
-    const response = await GetJobPostsHandler("employer");
+    const response = await GetJobPostsHandler(postType, category, value2, sort);
     if (response.status == 200) {
       setJobPosts(response.data);
     }
@@ -99,6 +100,10 @@ export default function JobListingEmployer() {
     getJobPosts();
   }, []);
 
+  useEffect(() => {
+    getJobPosts();
+  }, [category, sort, value2]);
+
   return (
     <body>
       <main>
@@ -111,7 +116,7 @@ export default function JobListingEmployer() {
               <div className="row">
                 <div className="col-xl-12">
                   <div className="hero-cap text-center">
-                    <h2>List job posts</h2>
+                    <h2>{title}</h2>
                   </div>
                 </div>
               </div>
@@ -380,56 +385,11 @@ export default function JobListingEmployer() {
                     </div>
                     {jobPosts.map((post, index) => {
                       return index < limit ? (
-                        <div className="single-job-items mb-30">
-                          <div className="job-items">
-                            <div className="company-img">
-                              <a href="#">
-                                <img
-                                  src={`data:image/png;base64,${post.image}`}
-                                  width="75"
-                                  height="75"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <div className="job-tittle job-tittle2">
-                              <a href="#">
-                                <h4>{post.title}</h4>
-                              </a>
-                              <ul>
-                                <li>{post.company}</li>
-                                <li>
-                                  <i className="fas fa-map-marker-alt"></i>
-                                  {post.location}
-                                </li>
-                                <li>
-                                  {Math.abs(post.salary - 1500)} -{" "}
-                                  {post.salary + 1500}
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <form action="">
-                            <div className="items-link items-link2 f-right">
-                              <a
-                                onClick={() => calculateTime(post.createdAt)}
-                                style={{ cursor: "pointer" }}
-                              >
-                                Apply
-                              </a>
-                              <span>
-                                {calculateTime(post.createdAt) > 24
-                                  ? `${Math.round(
-                                      calculateTime(post.createdAt) / 24
-                                    )} days ago`
-                                  : `${calculateTime(
-                                      post.createdAt
-                                    )} hours ago`}{" "}
-                                hours ago
-                              </span>
-                            </div>
-                          </form>
-                        </div>
+                        <JobPost
+                          post={post}
+                          calculateTime={calculateTime}
+                          index={index}
+                        />
                       ) : (
                         <></>
                       );
