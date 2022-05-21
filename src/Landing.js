@@ -93,28 +93,69 @@ function Landing() {
                           <span className="current">Categories</span>
                           <ul className="list">
                             <li data-value="" className="option selected">
-                              Categories
+                              <a
+                                href="/job-listing-employer"
+                                style={{ color: "black" }}
+                              >
+                                {" "}
+                                Categories
+                              </a>
                             </li>
                             <li data-value="" className="option">
-                              Frontend Developer
+                              <a
+                                href="/job-listing-employer"
+                                style={{ color: "black" }}
+                              >
+                                Frontend Developer
+                              </a>
                             </li>
                             <li data-value="" className="option">
-                              Assistant
+                              <a
+                                href="/job-listing-employer"
+                                style={{ color: "black" }}
+                              >
+                                Assistant
+                              </a>
                             </li>
                             <li data-value="" className="option">
-                              Mobile Developer
+                              <a
+                                href="/job-listing-employer"
+                                style={{ color: "black" }}
+                              >
+                                Mobile Developer
+                              </a>
                             </li>
                             <li data-value="" className="option">
-                              Full Stack Developer
+                              <a
+                                href="/job-listing-employer"
+                                style={{ color: "black" }}
+                              >
+                                Full Stack Developer
+                              </a>
                             </li>
                             <li data-value="" className="option">
-                              Data Scientist
+                              <a
+                                href="/job-listing-employer"
+                                style={{ color: "black" }}
+                              >
+                                Data Scientist
+                              </a>
                             </li>
                             <li data-value="" className="option">
-                              Devops
+                              <a
+                                href="/job-listing-employer"
+                                style={{ color: "black" }}
+                              >
+                                Devops
+                              </a>
                             </li>
                             <li data-value="" className="option">
-                              Product Owner
+                              <a
+                                href="/job-listing-employer"
+                                style={{ color: "black" }}
+                              >
+                                Product Owner
+                              </a>
                             </li>
                           </ul>
                         </div>
@@ -147,7 +188,7 @@ function Landing() {
                   </div>
                   <div className="services-cap">
                     <h5>
-                      <a href="job_listing.html">Design & Creative</a>
+                      <a href="/job-listing-employer">Design & Creative</a>
                     </h5>
                     <span>(0)</span>
                   </div>
@@ -160,7 +201,7 @@ function Landing() {
                   </div>
                   <div className="services-cap">
                     <h5>
-                      <a href="job_listing.html">Design & Development</a>
+                      <a href="/job-listing-employer">Design & Development</a>
                     </h5>
                     <span>(0)</span>
                   </div>
@@ -173,7 +214,7 @@ function Landing() {
                   </div>
                   <div className="services-cap">
                     <h5>
-                      <a href="job_listing.html">Sales & Marketing</a>
+                      <a href="/job-listing-employer">Sales & Marketing</a>
                     </h5>
                     <span>(0)</span>
                   </div>
@@ -186,7 +227,7 @@ function Landing() {
                   </div>
                   <div className="services-cap">
                     <h5>
-                      <a href="job_listing.html">Mobile Application</a>
+                      <a href="/job-listing-employer">Mobile Application</a>
                     </h5>
                     <span>(0)</span>
                   </div>
@@ -199,7 +240,7 @@ function Landing() {
                   </div>
                   <div className="services-cap">
                     <h5>
-                      <a href="job_listing.html">Construction</a>
+                      <a href="/job-listing-employer">Construction</a>
                     </h5>
                     <span>(0)</span>
                   </div>
@@ -212,7 +253,7 @@ function Landing() {
                   </div>
                   <div className="services-cap">
                     <h5>
-                      <a href="job_listing.html">Information Technology</a>
+                      <a href="/job-listing-employer">Information Technology</a>
                     </h5>
                     <span>(0)</span>
                   </div>
@@ -225,7 +266,7 @@ function Landing() {
                   </div>
                   <div className="services-cap">
                     <h5>
-                      <a href="job_listing.html">Real Estate</a>
+                      <a href="/job-listing-employer">Real Estate</a>
                     </h5>
                     <span>(0)</span>
                   </div>
@@ -238,7 +279,7 @@ function Landing() {
                   </div>
                   <div className="services-cap">
                     <h5>
-                      <a href="job_listing.html">Content Writer</a>
+                      <a href="/job-listing-employer">Content Writer</a>
                     </h5>
                     <span>(0)</span>
                   </div>
@@ -248,7 +289,7 @@ function Landing() {
             <div className="row">
               <div className="col-lg-12">
                 <div className="browse-btn2 text-center mt-50">
-                  <a href="job_listing.html" className="border-btn2">
+                  <a href="/job-listing-employer" className="border-btn2">
                     Browse All Categories
                   </a>
                 </div>
@@ -277,48 +318,6 @@ function Landing() {
             </div>
           </div>
         </div>
-        <section className="featured-job-area feature-padding">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="section-tittle text-center">
-                  <span>Recent Job</span>
-                  <h2>Featured Jobs</h2>
-                </div>
-              </div>
-            </div>
-            <div className="row justify-content-center">
-              <div className="col-xl-10">
-                <div className="single-job-items mb-30">
-                  <div className="job-items">
-                    <div className="company-img">
-                      <a href="job_details.html">
-                        <img src="./assets/img/icon/job-list1.png" alt="" />
-                      </a>
-                    </div>
-                    <div className="job-tittle">
-                      <a href="job_details.html">
-                        <h4>Digital Marketer</h4>
-                      </a>
-                      <ul>
-                        <li>Creative Agency</li>
-                        <li>
-                          <i className="fas fa-map-marker-alt"></i>Athens,
-                          Greece
-                        </li>
-                        <li>$3500 - $4000</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="items-link f-right">
-                    <a href="job_details.html">Full Time</a>
-                    <span>7 hours ago</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
       <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
       <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>

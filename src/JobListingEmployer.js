@@ -402,20 +402,18 @@ export default function JobListingEmployer({ postType, title }) {
                           alignItems: "center",
                         }}
                       >
-                        <button
-                          style={{
-                            backgroundColor: "#8b92dd",
-                            border: "none",
-                            height: "25%",
-                            fontFamily: "Muli, sans-serif",
-                            cursor: "pointer",
-                            width: "350px",
-                            height: "40px",
-                          }}
-                          onClick={() => setLimit(limit + 10)}
-                        >
-                          Show More
-                        </button>
+                        <div>
+                          <button
+                            className="showMore"
+                            style={{
+                              backgroundColor: "#8b92dd !important",
+                              color: "white !important",
+                            }}
+                            onClick={() => setLimit(limit + 10)}
+                          >
+                            Show More
+                          </button>
+                        </div>
                       </div>
                     )}
                   </div>

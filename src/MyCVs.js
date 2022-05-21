@@ -19,7 +19,7 @@ export default function MyCVs() {
     <body>
       <div class="slider-area ">
         <div
-          class="single-slider section-overly slider-height2 d-flex align-items-center contactImage"
+          class="single-slider section-overly slider-height2 d-flex align-items-center cvImage"
           style={{ backgroundSize: "contain" }}
         >
           <div class="container">
