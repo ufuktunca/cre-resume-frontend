@@ -523,6 +523,17 @@ hr {
   width: 100%;
 }
 
+.applyCV{
+  padding: 5px;
+  border-bottom: 1px solid #ededed;
+  cursor: pointer;
+}
+
+.applyCV:hover{
+  background-color: #8b92dd;
+  color: white;
+}
+
 .showMore {
   border: 1px solid #8b92dd;
   color: white;

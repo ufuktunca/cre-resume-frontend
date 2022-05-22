@@ -13,6 +13,7 @@ import CreateLFJobPost from "./CreateLFJobPost";
 import CreateJobPost from "./CreateJobPost";
 import MyCVs from "./MyCVs";
 import { GetCookie } from "./api/user";
+import MyJobPosts from "./MyJobPosts";
 
 function App() {
   return (
@@ -34,6 +35,29 @@ function App() {
                 <JobListingEmployer
                   title={"List Job Posts"}
                   postType={"employer"}
+                />
+              )
+            }
+          />
+          <Route
+            path="/my-job-posts"
+            element={
+              GetCookie("auth") === undefined ? (
+                <Login />
+              ) : (
+                <MyJobPosts title={"My Job Posts"} postType={"employer"} />
+              )
+            }
+          />
+          <Route
+            path="/my-lf-job-posts"
+            element={
+              GetCookie("auth") === undefined ? (
+                <Login />
+              ) : (
+                <MyJobPosts
+                  title={"My Looking for Job Posts"}
+                  postType={"unemployed"}
                 />
               )
             }

@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { GetCookie } from "../api/user";
 
-export default function JobPost({ post, calculateTime, index }) {
+export default function JobPost({
+  post,
+  calculateTime,
+  index,
+  setOpen,
+  setJobID,
+}) {
   const [showAll, setShowAll] = useState(false);
 
   return (
@@ -51,9 +57,13 @@ export default function JobPost({ post, calculateTime, index }) {
       <form action="">
         <div className="items-link items-link2 f-right">
           <a
-            onClick={() =>
-              GetCookie("userType") != post.type && console.log("asdasd")
-            }
+            onClick={() => {
+              if (GetCookie("userType") == post.type) {
+                return;
+              }
+              setOpen(true);
+              setJobID(post.id);
+            }}
             style={{
               cursor:
                 GetCookie("userType") != post.type ? "pointer" : "no-drop",

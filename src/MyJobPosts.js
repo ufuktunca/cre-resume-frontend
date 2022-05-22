@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GetJobPostsHandler, ApplyJobHandler } from "./api/jobPost";
-import { GetUserCVsHandler } from "./api/cv";
+import { GetUserJobPostsHandler } from "./api/jobPost";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import "./App.css";
@@ -60,7 +59,7 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function JobListingEmployer({ postType, title }) {
+export default function MyJobPosts({ postType, title }) {
   const [sortByOpen, setSortByOpen] = useState(false);
   const [jobCategoryOpen, setJobCategoryOpen] = useState(false);
   const [jobPosts, setJobPosts] = useState([]);
@@ -95,34 +94,10 @@ export default function JobListingEmployer({ postType, title }) {
   };
 
   const getJobPosts = async () => {
-    const response = await GetJobPostsHandler(postType, category, value2, sort);
+    const response = await GetUserJobPostsHandler(postType);
     if (response.status == 200) {
       setJobPosts(response.data);
     }
-  };
-
-  const applyJob = async () => {
-    const response = await ApplyJobHandler(jobID, cvID);
-    if (response.status == 200) {
-      setCVID("");
-      setJobID("");
-      setOpen("");
-      setAlert({
-        status: "success",
-        message: "You have successfully applied to job.",
-      });
-    } else {
-      setAlert({
-        status: "error",
-        message:
-          "You have already applied to that job. You cant re-apply to it.",
-      });
-    }
-  };
-
-  const getUserCVs = async () => {
-    const data = await GetUserCVsHandler();
-    setCvs(data);
   };
 
   const calculateTime = (time) => {
@@ -133,7 +108,6 @@ export default function JobListingEmployer({ postType, title }) {
 
   useEffect(() => {
     getJobPosts();
-    getUserCVs();
   }, []);
 
   useEffect(() => {
@@ -231,7 +205,6 @@ export default function JobListingEmployer({ postType, title }) {
               variant="contained"
               color="primary"
               disabled={jobID == "" || cvID == ""}
-              onClick={() => applyJob()}
             >
               Apply
             </Button>
