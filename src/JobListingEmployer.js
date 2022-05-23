@@ -55,6 +55,7 @@ import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
+import CVPopUp from "./components/CVPopUp";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -101,8 +102,8 @@ export default function JobListingEmployer({ postType, title }) {
     }
   };
 
-  const applyJob = async () => {
-    const response = await ApplyJobHandler(jobID, cvID);
+  const applyJob = async (cvId) => {
+    const response = await ApplyJobHandler(jobID, cvId);
     if (response.status == 200) {
       setCVID("");
       setJobID("");
@@ -152,7 +153,7 @@ export default function JobListingEmployer({ postType, title }) {
             {alert.message}
           </Alert>
         </Snackbar>
-        <Modal
+        {/* <Modal
           open={open}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
@@ -236,7 +237,14 @@ export default function JobListingEmployer({ postType, title }) {
               Apply
             </Button>
           </div>
-        </Modal>
+            </Modal>*/}
+        <CVPopUp
+          open={open}
+          setOpen={setOpen}
+          cvs={cvs}
+          onClickAction={applyJob}
+          disableCondition={jobID == ""}
+        />
         <div class="slider-area ">
           <div
             class="single-slider section-overly slider-height2 d-flex align-items-center jobListingEmployerList"
@@ -521,6 +529,7 @@ export default function JobListingEmployer({ postType, title }) {
                           index={index}
                           setOpen={setOpen}
                           setJobID={setJobID}
+                          type={postType}
                         />
                       ) : (
                         <></>

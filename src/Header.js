@@ -83,20 +83,22 @@ export default function Header() {
                                 <a href="/my-cvs">My CVs</a>
                               </li>
                               {GetCookie("userType") === "unemployed" && (
-                                <li>
-                                  <a href="/my-lf-job-posts">
-                                    My Looking For Job Posts
-                                  </a>
-                                </li>
+                                <>
+                                  <li>
+                                    <a href="/my-lf-job-posts">
+                                      My Looking For Job Posts
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="/my-applies">My Applies</a>
+                                  </li>
+                                </>
                               )}
                               {GetCookie("userType") === "employer" && (
                                 <li>
                                   <a href="/my-job-posts">My Job Posts</a>
                                 </li>
                               )}
-                              <li>
-                                <a href="/job-listing-employer">My Applies</a>
-                              </li>
                             </ul>
                           </li>
                         )}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GetUserJobPostsHandler } from "./api/jobPost";
+import { GetUserJobPostsHandler, GetAppliedJobs } from "./api/jobPost";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import "./App.css";
@@ -54,6 +54,7 @@ import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
+import CVPopUp from "./components/CVPopUp";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -63,14 +64,13 @@ export default function MyJobPosts({ postType, title }) {
   const [sortByOpen, setSortByOpen] = useState(false);
   const [jobCategoryOpen, setJobCategoryOpen] = useState(false);
   const [jobPosts, setJobPosts] = useState([]);
+  const [applies, setApplies] = useState([]);
   const [value2, setValue2] = useState([3000, 15000]);
   const [sort, setSort] = useState({ name: "None", type: "" });
   const [category, setCategory] = useState({ name: "Categories", type: "" });
   const [limit, setLimit] = useState(10);
   const [open, setOpen] = useState(false);
-  const [cvs, setCvs] = useState([]);
   const [jobID, setJobID] = useState("");
-  const [cvID, setCVID] = useState("");
   const [alert, setAlert] = useState({ status: "", message: "" });
 
   const minDistance = 10;
@@ -94,9 +94,16 @@ export default function MyJobPosts({ postType, title }) {
   };
 
   const getJobPosts = async () => {
-    const response = await GetUserJobPostsHandler(postType);
-    if (response.status == 200) {
-      setJobPosts(response.data);
+    if (postType != "applied") {
+      const response = await GetUserJobPostsHandler(postType);
+      if (response.status == 200) {
+        setJobPosts(response.data);
+      }
+    } else {
+      const response = await GetAppliedJobs();
+      if (response.status == 200) {
+        setJobPosts(response.data);
+      }
     }
   };
 
@@ -126,90 +133,6 @@ export default function MyJobPosts({ postType, title }) {
             {alert.message}
           </Alert>
         </Snackbar>
-        <Modal
-          open={open}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 550,
-              height: 550,
-              bgcolor: "background.paper",
-              border: "2px solid #000",
-              boxShadow: 24,
-              p: 4,
-              backgroundColor: "white",
-              //padding: "0px 150px 150px 0px",
-              borderRadius: "5px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                cursor: "pointer",
-              }}
-              onClick={() => setOpen(false)}
-            >
-              <CloseIcon fontSize="medium" />
-            </div>
-            <Typography
-              id="modal-modal-title"
-              variant="h6"
-              component="h2"
-              style={{
-                marginLeft: "35px",
-                borderBottom: "1px solid black",
-                marginRight: "40px",
-              }}
-            >
-              Choose CV for Apply
-            </Typography>
-            <Typography
-              id="modal-modal-description"
-              sx={{ mt: 2 }}
-              style={{
-                marginLeft: "35px",
-                marginRight: "40px",
-                height: "425px",
-                overflowY: "scroll",
-              }}
-            >
-              {cvs.map((cv, index) => (
-                <div
-                  key={index + "-cv"}
-                  className="applyCV"
-                  style={{
-                    backgroundColor: cv.id == cvID ? "#8b92dd" : "",
-                    color: cv.id == cvID ? "#ffffff" : "",
-                  }}
-                  onClick={() => setCVID(cv.id)}
-                >
-                  {cv.cvName}
-                </div>
-              ))}
-            </Typography>
-            <Button
-              style={{
-                float: "right",
-                marginRight: "40px",
-                backgroundColor: "#8b92dd",
-                color: "white",
-                marginTop: "5px",
-              }}
-              variant="contained"
-              color="primary"
-              disabled={jobID == "" || cvID == ""}
-            >
-              Apply
-            </Button>
-          </div>
-        </Modal>
         <div class="slider-area ">
           <div
             class="single-slider section-overly slider-height2 d-flex align-items-center jobListingEmployerList"
@@ -488,13 +411,17 @@ export default function MyJobPosts({ postType, title }) {
                     </div>
                     {jobPosts.map((post, index) => {
                       return index < limit ? (
-                        <JobPost
-                          post={post}
-                          calculateTime={calculateTime}
-                          index={index}
-                          setOpen={setOpen}
-                          setJobID={setJobID}
-                        />
+                        <div key={"my-posts-" + index}>
+                          <JobPost
+                            post={post}
+                            calculateTime={calculateTime}
+                            index={index}
+                            setOpen={setOpen}
+                            setJobID={setJobID}
+                            type={postType}
+                            disableApply={"true"}
+                          />
+                        </div>
                       ) : (
                         <></>
                       );

@@ -12,7 +12,8 @@ export const CreateJobPostHandler = async (
   location,
   image,
   currency,
-  type
+  type,
+  cvId
 ) => {
   try {
     const resp = await axios.post(
@@ -26,6 +27,7 @@ export const CreateJobPostHandler = async (
         location,
         image,
         currency,
+        cvId,
       },
       {
         headers: {
@@ -87,6 +89,16 @@ export const GetJobPostsHandler = async (postType, category, salary, sort) => {
 
 export const GetUserJobPostsHandler = async (postType) => {
   const resp = await axios.get(`${localURL}/jobPost/user/${postType}`, {
+    headers: {
+      Authorization: GetCookie("auth"),
+    },
+  });
+
+  return resp;
+};
+
+export const GetAppliedJobs = async () => {
+  const resp = await axios.get(`${localURL}/user/jobPost/apply`, {
     headers: {
       Authorization: GetCookie("auth"),
     },

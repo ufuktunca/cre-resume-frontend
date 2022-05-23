@@ -50,6 +50,16 @@ function App() {
             }
           />
           <Route
+            path="/my-applies"
+            element={
+              GetCookie("auth") === undefined ? (
+                <Login />
+              ) : (
+                <MyJobPosts title={"My Applies"} postType={"applied"} />
+              )
+            }
+          />
+          <Route
             path="/my-lf-job-posts"
             element={
               GetCookie("auth") === undefined ? (

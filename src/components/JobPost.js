@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { GetCookie } from "../api/user";
+import { localURL } from "../api/user";
 
 export default function JobPost({
   post,
@@ -7,6 +8,8 @@ export default function JobPost({
   index,
   setOpen,
   setJobID,
+  type,
+  disableApply,
 }) {
   const [showAll, setShowAll] = useState(false);
 
@@ -56,27 +59,39 @@ export default function JobPost({
       </div>
       <form action="">
         <div className="items-link items-link2 f-right">
-          <a
-            onClick={() => {
-              if (GetCookie("userType") == post.type) {
-                return;
-              }
-              setOpen(true);
-              setJobID(post.id);
-            }}
-            style={{
-              cursor:
-                GetCookie("userType") != post.type ? "pointer" : "no-drop",
-            }}
-          >
-            Apply
-          </a>
+          {type == "unemployed" || type == "applied" ? (
+            <a
+              href={`${localURL}/cv/${post.cvId}?download=true`}
+              target="_blank"
+            >
+              Download CV
+            </a>
+          ) : (
+            <a
+              onClick={() => {
+                if (GetCookie("userType") == post.type) {
+                  return;
+                }
+                setOpen(true);
+                setJobID(post.id);
+              }}
+              style={{
+                cursor:
+                  GetCookie("userType") == "employer" && post.type == "employer"
+                    ? "no-drop"
+                    : "pointer",
+              }}
+            >
+              Apply
+            </a>
+          )}
           <span>
             {calculateTime(post.createdAt) > 24
               ? `${Math.round(calculateTime(post.createdAt) / 24)} days ago`
               : `${calculateTime(post.createdAt)} hours ago`}{" "}
           </span>
         </div>
+        )
       </form>
     </div>
   );

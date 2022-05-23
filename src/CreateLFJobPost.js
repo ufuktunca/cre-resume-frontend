@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FileBase64 from "react-file-base64";
 import { CreateJobPostHandler } from "./api/jobPost";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
+import CVPopUp from "./components/CVPopUp";
+import { GetUserCVsHandler } from "./api/cv";
 
 export default function CreateLFJobPost() {
   const [title, setTitle] = useState("");
@@ -13,6 +15,19 @@ export default function CreateLFJobPost() {
   const [image, setImage] = useState("");
   const [currency, setCurrency] = useState("");
   const [requestResponse, setRequestResponse] = useState({});
+  const [open, setOpen] = useState(false);
+  const [cvs, setCvs] = useState([]);
+  const [cvId, setCVId] = useState("");
+
+  const getUserCVs = async () => {
+    const data = await GetUserCVsHandler();
+    setCvs(data);
+  };
+
+  const setCVIDHandler = (cvId) => {
+    setCVId(cvId);
+    setOpen(false);
+  };
 
   const createJobPost = async (e) => {
     e.preventDefault();
@@ -25,7 +40,8 @@ export default function CreateLFJobPost() {
       location,
       image,
       currency,
-      "unemployed"
+      "unemployed",
+      cvId
     );
 
     if (response.status == 201) {
@@ -48,9 +64,20 @@ export default function CreateLFJobPost() {
     }
   };
 
+  useEffect(() => {
+    getUserCVs();
+  }, []);
+
   return (
     <body>
       <main>
+        <CVPopUp
+          open={open}
+          setOpen={setOpen}
+          cvs={cvs}
+          onClickAction={setCVIDHandler}
+          disableCondition={false}
+        />
         <Snackbar
           open={
             requestResponse.status == "success" ||
@@ -259,6 +286,30 @@ export default function CreateLFJobPost() {
                     required
                   />
                 </div>
+                <div
+                  className="form-group"
+                  style={{
+                    marginBottom: "0.8rem !important",
+                  }}
+                >
+                  <div href="#" className="btnForgetPwd" value="">
+                    CV *
+                  </div>
+                </div>
+                <div
+                  className="form-group"
+                  style={{
+                    marginBottom: "0.8rem !important",
+                  }}
+                >
+                  <button
+                    style={{ color: "black" }}
+                    onClick={() => setOpen(true)}
+                  >
+                    Choose CV
+                  </button>
+                </div>
+
                 <div className="form-group" style={{ marginTop: "30px" }}>
                   <input
                     type="submit"
