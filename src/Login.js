@@ -60,12 +60,19 @@ export default function Login() {
   const [employerPassword, setEmployerPassword] = useState("");
   const [error, setError] = useState(true);
   const [registered, setRegistered] = useState("");
+  const [activation, setActivation] = useState("");
 
   useEffect(() => {
     let search = window.location.search;
     let params = new URLSearchParams(search);
     let userID = params.get("userID");
-    activation(userID);
+    let registered = params.get("registered");
+    if (userID != null) {
+      activationRequest(userID);
+    }
+    if (registered != null) {
+      setRegistered("true");
+    }
   }, []);
 
   const reSend = async () => {
@@ -77,10 +84,10 @@ export default function Login() {
     }
   };
 
-  const activation = async (userID) => {
+  const activationRequest = async (userID) => {
     const result = await ActivationHandler(userID);
     if (result.status == 200) {
-      setRegistered("true");
+      setActivation("true");
     }
   };
 
