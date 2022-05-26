@@ -77,6 +77,7 @@ export default function CreateLFJobPost() {
           cvs={cvs}
           onClickAction={setCVIDHandler}
           disableCondition={false}
+          title={"Choose CV for Apply"}
         />
         <Snackbar
           open={

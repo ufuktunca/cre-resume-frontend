@@ -69,20 +69,25 @@ export default function JobPost({
           ) : (
             <a
               onClick={() => {
-                if (GetCookie("userType") == post.type) {
+                if (
+                  GetCookie("userType") == post.type &&
+                  disableApply != true
+                ) {
                   return;
+                } else if (disableApply == true) {
+                  setOpen(true, post.id);
+                } else {
+                  setJobID(post.id);
+                  setOpen(true);
                 }
-                setOpen(true);
-                setJobID(post.id);
               }}
               style={{
-                cursor:
-                  GetCookie("userType") == "employer" && post.type == "employer"
-                    ? "no-drop"
-                    : "pointer",
+                cursor: "pointer",
               }}
             >
-              Apply
+              {GetCookie("userType") == "employer" && disableApply != true
+                ? "Apply"
+                : "Download CVs"}
             </a>
           )}
           <span>
@@ -91,7 +96,6 @@ export default function JobPost({
               : `${calculateTime(post.createdAt)} hours ago`}{" "}
           </span>
         </div>
-        )
       </form>
     </div>
   );

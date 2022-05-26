@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "@mui/material/Button";
+import { localURL } from "../api/user";
 
 export default function CVPopUp({
   open,
@@ -10,9 +11,11 @@ export default function CVPopUp({
   cvs,
   onClickAction,
   disableCondition,
+  title,
+  disableApply,
 }) {
+  console.log(cvs);
   const [cvID, setCVID] = useState("");
-  console.log(disableCondition || cvID == "", cvID);
   return (
     <div>
       {" "}
@@ -58,7 +61,7 @@ export default function CVPopUp({
               marginRight: "40px",
             }}
           >
-            Choose CV for Apply
+            {title}
           </Typography>
           <Typography
             id="modal-modal-description"
@@ -70,37 +73,55 @@ export default function CVPopUp({
               overflowY: "scroll",
             }}
           >
-            {cvs.map((cv, index) => (
-              <div
-                key={index + "-cv"}
-                className="applyCV"
-                style={{
-                  backgroundColor: cv.id == cvID ? "#8b92dd" : "",
-                  color: cv.id == cvID ? "#ffffff" : "",
-                }}
-                onClick={() => setCVID(cv.id)}
-              >
-                {cv.cvName}
-              </div>
-            ))}
+            {disableApply != true
+              ? cvs.map((cv, index) => (
+                  <div
+                    key={index + "-cv"}
+                    className="applyCV"
+                    style={{
+                      backgroundColor: cv.id == cvID ? "#8b92dd" : "",
+                      color: cv.id == cvID ? "#ffffff" : "",
+                    }}
+                    onClick={() => setCVID(cv.id)}
+                  >
+                    {cv.cvName}
+                  </div>
+                ))
+              : cvs.map((cv, index) => (
+                  <a
+                    key={index + "-cv"}
+                    className="applyCV"
+                    style={{
+                      backgroundColor: cv.id == cvID ? "#8b92dd" : "",
+                      color: cv.id == cvID ? "#ffffff" : "#000000",
+                      display: "block",
+                    }}
+                    href={`${localURL}/cv/${cv.id}`}
+                    target="_blank"
+                  >
+                    {cv.cvName}
+                  </a>
+                ))}
           </Typography>
-          <Button
-            style={{
-              float: "right",
-              marginRight: "40px",
-              backgroundColor: "#8b92dd",
-              color: "white",
-              marginTop: "5px",
-            }}
-            variant="contained"
-            color="primary"
-            disabled={disableCondition || cvID == ""}
-            onClick={() => {
-              onClickAction(cvID);
-            }}
-          >
-            Apply
-          </Button>
+          {disableApply != true && (
+            <Button
+              style={{
+                float: "right",
+                marginRight: "40px",
+                backgroundColor: "#8b92dd",
+                color: "white",
+                marginTop: "5px",
+              }}
+              variant="contained"
+              color="primary"
+              disabled={disableCondition || cvID == ""}
+              onClick={() => {
+                onClickAction(cvID);
+              }}
+            >
+              Apply
+            </Button>
+          )}
         </div>
       </Modal>
     </div>

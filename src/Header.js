@@ -125,13 +125,19 @@ export default function Header() {
                       <a
                         href="/"
                         className="btn head-btn1"
-                        onClick={() =>
+                        onClick={() => {
                           SetCookie(
                             "auth",
                             null,
                             "Thu, 01 Jan 1970 00:00:01 GMT"
-                          )
-                        }
+                          );
+
+                          SetCookie(
+                            "userType",
+                            null,
+                            "Thu, 01 Jan 1970 00:00:01 GMT"
+                          );
+                        }}
                       >
                         Logout
                       </a>

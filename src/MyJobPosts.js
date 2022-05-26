@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { GetUserJobPostsHandler, GetAppliedJobs } from "./api/jobPost";
+import {
+  GetUserJobPostsHandler,
+  GetAppliedJobs,
+  GetJobApplies,
+} from "./api/jobPost";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import "./App.css";
@@ -113,6 +117,12 @@ export default function MyJobPosts({ postType, title }) {
     return Math.round((date1 - date2) / (1000 * 3600));
   };
 
+  const getJobApplies = async (openCondition, jobId) => {
+    const response = await GetJobApplies(jobId);
+    setApplies(response.data);
+    setOpen(openCondition);
+  };
+
   useEffect(() => {
     getJobPosts();
   }, []);
@@ -124,6 +134,13 @@ export default function MyJobPosts({ postType, title }) {
   return (
     <body>
       <main>
+        <CVPopUp
+          open={open}
+          setOpen={setOpen}
+          cvs={applies}
+          title={"Applied CVs"}
+          disableApply={true}
+        />
         <Snackbar open={alert.status != ""} autoHideDuration={6000}>
           <Alert
             onClose={() => setAlert({ status: "", message: "" })}
@@ -416,10 +433,10 @@ export default function MyJobPosts({ postType, title }) {
                             post={post}
                             calculateTime={calculateTime}
                             index={index}
-                            setOpen={setOpen}
+                            setOpen={getJobApplies}
                             setJobID={setJobID}
                             type={postType}
-                            disableApply={"true"}
+                            disableApply={true}
                           />
                         </div>
                       ) : (

@@ -190,7 +190,6 @@ function Landing() {
                     <h5>
                       <a href="/job-listing-employer">Design & Creative</a>
                     </h5>
-                    <span>(0)</span>
                   </div>
                 </div>
               </div>
@@ -203,7 +202,6 @@ function Landing() {
                     <h5>
                       <a href="/job-listing-employer">Design & Development</a>
                     </h5>
-                    <span>(0)</span>
                   </div>
                 </div>
               </div>
@@ -216,7 +214,6 @@ function Landing() {
                     <h5>
                       <a href="/job-listing-employer">Sales & Marketing</a>
                     </h5>
-                    <span>(0)</span>
                   </div>
                 </div>
               </div>
@@ -229,7 +226,6 @@ function Landing() {
                     <h5>
                       <a href="/job-listing-employer">Mobile Application</a>
                     </h5>
-                    <span>(0)</span>
                   </div>
                 </div>
               </div>
@@ -242,7 +238,6 @@ function Landing() {
                     <h5>
                       <a href="/job-listing-employer">Construction</a>
                     </h5>
-                    <span>(0)</span>
                   </div>
                 </div>
               </div>
@@ -255,7 +250,6 @@ function Landing() {
                     <h5>
                       <a href="/job-listing-employer">Information Technology</a>
                     </h5>
-                    <span>(0)</span>
                   </div>
                 </div>
               </div>
@@ -268,7 +262,6 @@ function Landing() {
                     <h5>
                       <a href="/job-listing-employer">Real Estate</a>
                     </h5>
-                    <span>(0)</span>
                   </div>
                 </div>
               </div>
@@ -281,7 +274,6 @@ function Landing() {
                     <h5>
                       <a href="/job-listing-employer">Content Writer</a>
                     </h5>
-                    <span>(0)</span>
                   </div>
                 </div>
               </div>

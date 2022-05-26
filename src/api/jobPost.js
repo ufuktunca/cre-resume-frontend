@@ -106,3 +106,13 @@ export const GetAppliedJobs = async () => {
 
   return resp;
 };
+
+export const GetJobApplies = async (jobId) => {
+  const resp = await axios.get(`${localURL}/jobs/${jobId}/apply`, {
+    headers: {
+      Authorization: GetCookie("auth"),
+    },
+  });
+
+  return resp;
+};
