@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GetCookie } from "../api/user";
 import { localURL } from "../api/user";
+import Switch from "@mui/material/Switch";
 
 export default function JobPost({
   post,
@@ -10,11 +11,23 @@ export default function JobPost({
   setJobID,
   type,
   disableApply,
+  switchButton,
+  switchButtonAction,
 }) {
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <div className="single-job-items mb-30" key={index + "-post-number"}>
+    <div
+      className="single-job-items mb-30"
+      key={index + "-post-number"}
+      style={{ flexDirection: "column" }}
+    >
+      {switchButton && (
+        <Switch
+          checked={!post.disabled}
+          onClick={() => switchButtonAction(post.id)}
+        />
+      )}
       <div className="job-items">
         <div className="company-img">
           <a href="#">

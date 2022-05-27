@@ -116,3 +116,13 @@ export const GetJobApplies = async (jobId) => {
 
   return resp;
 };
+
+export const ChangeJobPostVisibility = async (jobId) => {
+  const resp = await axios.delete(`${localURL}/jobs/${jobId}`, {
+    headers: {
+      Authorization: GetCookie("auth"),
+    },
+  });
+
+  return resp;
+};

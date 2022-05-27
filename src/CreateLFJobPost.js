@@ -31,6 +31,11 @@ export default function CreateLFJobPost() {
 
   const createJobPost = async (e) => {
     e.preventDefault();
+
+    if (cvId == "" || image == "") {
+      return;
+    }
+
     const response = await CreateJobPostHandler(
       title,
       "",
@@ -306,6 +311,7 @@ export default function CreateLFJobPost() {
                   <button
                     style={{ color: "black" }}
                     onClick={() => setOpen(true)}
+                    type="button"
                   >
                     Choose CV
                   </button>
@@ -316,6 +322,7 @@ export default function CreateLFJobPost() {
                     type="submit"
                     className="btnSubmit"
                     value="Create Job Post"
+                    style={{ cursor: "pointer" }}
                   />
                 </div>
               </form>

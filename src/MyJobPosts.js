@@ -3,6 +3,7 @@ import {
   GetUserJobPostsHandler,
   GetAppliedJobs,
   GetJobApplies,
+  ChangeJobPostVisibility,
 } from "./api/jobPost";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
@@ -121,6 +122,15 @@ export default function MyJobPosts({ postType, title }) {
     const response = await GetJobApplies(jobId);
     setApplies(response.data);
     setOpen(openCondition);
+  };
+
+  const changeVisibility = async (jobId) => {
+    const resp = await ChangeJobPostVisibility(jobId);
+
+    const jobResp = await GetUserJobPostsHandler(postType);
+    if (jobResp.status == 200) {
+      setJobPosts(jobResp.data);
+    }
   };
 
   useEffect(() => {
@@ -437,6 +447,8 @@ export default function MyJobPosts({ postType, title }) {
                             setJobID={setJobID}
                             type={postType}
                             disableApply={true}
+                            switchButton={true}
+                            switchButtonAction={changeVisibility}
                           />
                         </div>
                       ) : (
