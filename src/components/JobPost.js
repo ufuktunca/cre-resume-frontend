@@ -72,7 +72,15 @@ export default function JobPost({
           </div>
         </div>
         <form action="">
-          <div className="items-link items-link2 f-right">
+          <div
+            className="items-link items-link2 f-right"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             {type == "unemployed" || type == "applied" ? (
               <a
                 href={`${localURL}/cv/${post.cvId}?download=true`}
@@ -96,10 +104,11 @@ export default function JobPost({
                   }
                 }}
                 style={{
-                  cursor: "pointer",
+                  cursor:
+                    GetCookie("userType") != "employer" ? "pointer" : "no-drop",
                 }}
               >
-                {GetCookie("userType") == "employer" && disableApply != true
+                {GetCookie("userType") != "employer" || disableApply != true
                   ? "Apply"
                   : "Download CVs"}
               </a>

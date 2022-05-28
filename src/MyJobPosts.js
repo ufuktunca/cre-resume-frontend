@@ -65,7 +65,7 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function MyJobPosts({ postType, title }) {
+export default function MyJobPosts({ postType, title, switchButton }) {
   const [sortByOpen, setSortByOpen] = useState(false);
   const [jobCategoryOpen, setJobCategoryOpen] = useState(false);
   const [jobPosts, setJobPosts] = useState([]);
@@ -453,7 +453,7 @@ export default function MyJobPosts({ postType, title }) {
                             setJobID={setJobID}
                             type={postType}
                             disableApply={true}
-                            switchButton={true}
+                            switchButton={switchButton}
                             switchButtonAction={changeVisibility}
                           />
                         </div>

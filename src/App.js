@@ -45,7 +45,11 @@ function App() {
               GetCookie("auth") === undefined ? (
                 <Login />
               ) : (
-                <MyJobPosts title={"My Job Posts"} postType={"employer"} />
+                <MyJobPosts
+                  title={"My Job Posts"}
+                  postType={"employer"}
+                  switchButton={true}
+                />
               )
             }
           />
@@ -68,6 +72,7 @@ function App() {
                 <MyJobPosts
                   title={"My Looking for Job Posts"}
                   postType={"unemployed"}
+                  switchButton={true}
                 />
               )
             }
