@@ -100,7 +100,12 @@ export default function MyJobPosts({ postType, title }) {
 
   const getJobPosts = async () => {
     if (postType != "applied") {
-      const response = await GetUserJobPostsHandler(postType);
+      const response = await GetUserJobPostsHandler(
+        postType,
+        category,
+        value2,
+        sort
+      );
       if (response.status == 200) {
         setJobPosts(response.data);
       }
@@ -327,6 +332,7 @@ export default function MyJobPosts({ postType, title }) {
                               disableSwap
                               min={0}
                               max={50000}
+                              color={"primary"}
                             />
                           </Box>
                           <input

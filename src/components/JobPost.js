@@ -28,88 +28,90 @@ export default function JobPost({
           onClick={() => switchButtonAction(post.id)}
         />
       )}
-      <div className="job-items">
-        <div className="company-img">
-          <a href="#">
-            <img
-              src={`data:image/png;base64,${post.image}`}
-              width="75"
-              height="75"
-              alt=""
-            />
-          </a>
-        </div>
-        <div className="job-tittle job-tittle2">
-          <a href="#">
-            <h4>{post.title}</h4>
-          </a>
-          <ul>
-            <li>{post.company}</li>
-            <li>
-              <i className="fas fa-map-marker-alt"></i>
-              {post.location}
-            </li>
-            <li>
-              {Math.abs(post.salary - 1500) + post.currency} -{" "}
-              {post.salary + 1500 + post.currency}
-            </li>
-          </ul>
-          <div>{post.category}</div>
-          <div
-            style={{
-              textOverflow: "ellipsis",
-              overflow: "hidden",
-              whiteSpace: showAll ? "" : "nowrap",
-              width: "490px",
-            }}
-          >
-            {post.content}
-          </div>
-          <div onClick={() => setShowAll(!showAll)}>
-            {showAll ? "Hide Description" : "Show All"}
-          </div>
-        </div>
-      </div>
-      <form action="">
-        <div className="items-link items-link2 f-right">
-          {type == "unemployed" || type == "applied" ? (
-            <a
-              href={`${localURL}/cv/${post.cvId}?download=true`}
-              target="_blank"
-            >
-              Download CV
+      <div style={{ display: "flex" }}>
+        <div className="job-items">
+          <div className="company-img">
+            <a href="#">
+              <img
+                src={`data:image/png;base64,${post.image}`}
+                width="75"
+                height="75"
+                alt=""
+              />
             </a>
-          ) : (
-            <a
-              onClick={() => {
-                if (
-                  GetCookie("userType") == post.type &&
-                  disableApply != true
-                ) {
-                  return;
-                } else if (disableApply == true) {
-                  setOpen(true, post.id);
-                } else {
-                  setJobID(post.id);
-                  setOpen(true);
-                }
-              }}
+          </div>
+          <div className="job-tittle job-tittle2">
+            <a href="#">
+              <h4>{post.title}</h4>
+            </a>
+            <ul>
+              <li>{post.company}</li>
+              <li>
+                <i className="fas fa-map-marker-alt"></i>
+                {post.location}
+              </li>
+              <li>
+                {Math.abs(post.salary - 1500) + post.currency} -{" "}
+                {post.salary + 1500 + post.currency}
+              </li>
+            </ul>
+            <div>{post.category}</div>
+            <div
               style={{
-                cursor: "pointer",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: showAll ? "" : "nowrap",
+                width: "490px",
               }}
             >
-              {GetCookie("userType") == "employer" && disableApply != true
-                ? "Apply"
-                : "Download CVs"}
-            </a>
-          )}
-          <span>
-            {calculateTime(post.createdAt) > 24
-              ? `${Math.round(calculateTime(post.createdAt) / 24)} days ago`
-              : `${calculateTime(post.createdAt)} hours ago`}{" "}
-          </span>
+              {post.content}
+            </div>
+            <div onClick={() => setShowAll(!showAll)}>
+              {showAll ? "Hide Description" : "Show All"}
+            </div>
+          </div>
         </div>
-      </form>
+        <form action="">
+          <div className="items-link items-link2 f-right">
+            {type == "unemployed" || type == "applied" ? (
+              <a
+                href={`${localURL}/cv/${post.cvId}?download=true`}
+                target="_blank"
+              >
+                Download CV
+              </a>
+            ) : (
+              <a
+                onClick={() => {
+                  if (
+                    GetCookie("userType") == post.type &&
+                    disableApply != true
+                  ) {
+                    return;
+                  } else if (disableApply == true) {
+                    setOpen(true, post.id);
+                  } else {
+                    setJobID(post.id);
+                    setOpen(true);
+                  }
+                }}
+                style={{
+                  cursor: "pointer",
+                }}
+              >
+                {GetCookie("userType") == "employer" && disableApply != true
+                  ? "Apply"
+                  : "Download CVs"}
+              </a>
+            )}
+            <span>
+              {calculateTime(post.createdAt) > 24
+                ? `${Math.round(calculateTime(post.createdAt) / 24)} days ago`
+                : `${calculateTime(post.createdAt)} hours ago`}{" "}
+            </span>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

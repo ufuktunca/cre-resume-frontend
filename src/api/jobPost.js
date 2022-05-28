@@ -87,8 +87,28 @@ export const GetJobPostsHandler = async (postType, category, salary, sort) => {
   return resp;
 };
 
-export const GetUserJobPostsHandler = async (postType) => {
-  const resp = await axios.get(`${localURL}/jobPost/user/${postType}`, {
+export const GetUserJobPostsHandler = async (
+  postType,
+  category,
+  salary,
+  sort
+) => {
+  let query = "";
+  if (category.type != "") {
+    query += "&category=" + category.type;
+  }
+
+  if (salary[0] > 0 || salary[1] > 0) {
+    query += "&from=" + salary[0] + "&to=" + salary[1];
+  }
+
+  if (sort.type != "") {
+    query += "&sort=" + sort.type;
+  }
+
+  query = query.replace("&", "?");
+
+  const resp = await axios.get(`${localURL}/jobPost/user/${postType}${query}`, {
     headers: {
       Authorization: GetCookie("auth"),
     },
