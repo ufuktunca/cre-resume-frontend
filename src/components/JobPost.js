@@ -60,13 +60,18 @@ export default function JobPost({
               style={{
                 textOverflow: "ellipsis",
                 overflow: "hidden",
-                whiteSpace: showAll ? "" : "nowrap",
-                width: "490px",
+                maxHeight: showAll ? "" : "35px",
+
+                whiteSpace: "break-spaces",
               }}
+              className="contentDiv"
             >
               {post.content}
             </div>
-            <div onClick={() => setShowAll(!showAll)}>
+            <div
+              onClick={() => setShowAll(!showAll)}
+              style={{ cursor: "pointer", textDecoration: "underline" }}
+            >
               {showAll ? "Hide Description" : "Show All"}
             </div>
           </div>

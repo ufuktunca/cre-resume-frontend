@@ -34,16 +34,7 @@ export default function MyCVs() {
         </div>
       </div>
       <section class="contact-section">
-        <div
-          style={{
-            display: "grid",
-            columnGap: "10px",
-            rowGap: "150px",
-            gridTemplateRows: "1fr",
-            gridTemplateColumns: "1fr 1fr 1fr 1fr",
-            gridAutoColumns: "auto auto auto auto",
-          }}
-        >
+        <div className="myCvs">
           {cvs.map((cv, index) => (
             <div className="centeralize" key={index}>
               <Document
