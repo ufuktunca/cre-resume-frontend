@@ -248,8 +248,9 @@ export default function CreateCV() {
                             type="text"
                             placeholder="Name and Surname *"
                             onChange={(e) =>
-                              e.target.value.match("^[a-zA-ZğüşöçİĞÜŞÖÇ ]*$") !=
-                              null
+                              e.target.value.match(
+                                "^[a-zA-ZğüşöçİĞÜŞÖÇı ]*$"
+                              ) != null
                                 ? setNameAndSurname(e.target.value)
                                 : ""
                             }
@@ -303,7 +304,7 @@ export default function CreateCV() {
                                 required
                                 onChange={(e) =>
                                   e.target.value.match(
-                                    "^[a-zA-ZğüşöçİĞÜŞÖÇ ]*$"
+                                    "^[a-zA-ZğüşöçİĞÜŞÖÇı ]*$"
                                   ) != null
                                     ? setLanguageVariable(
                                         index,
@@ -426,7 +427,7 @@ export default function CreateCV() {
                               required
                               onChange={(e) =>
                                 e.target.value.match(
-                                  "^[a-zA-ZğüşöçİĞÜŞÖÇ ]*$"
+                                  "^[a-zA-ZğüşöçİĞÜŞÖÇı ]*$"
                                 ) != null
                                   ? setHobbiesIndex(index, e.target.value)
                                   : ""

@@ -169,7 +169,7 @@ export default function Register() {
                     value={name}
                     required
                     onChange={(e) =>
-                      e.target.value.match("^[a-zA-ZğüşöçİĞÜŞÖÇ ]*$") != null
+                      e.target.value.match("^[a-zA-ZğüşöçİĞÜŞÖÇı ]*$") != null
                         ? setName(e.target.value)
                         : ""
                     }
@@ -201,7 +201,7 @@ export default function Register() {
                     minLength={3}
                     value={surname}
                     onChange={(e) =>
-                      e.target.value.match("^[a-zA-ZğüşöçİĞÜŞÖÇ ]*$") != null
+                      e.target.value.match("^[a-zA-ZğüşöçİĞÜŞÖÇı ]*$") != null
                         ? setSurname(e.target.value)
                         : ""
                     }

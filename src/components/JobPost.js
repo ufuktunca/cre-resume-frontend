@@ -110,7 +110,9 @@ export default function JobPost({
                 }}
                 style={{
                   cursor:
-                    GetCookie("userType") != "employer" ? "pointer" : "no-drop",
+                    GetCookie("userType") != "employer" || disableApply == true
+                      ? "pointer"
+                      : "no-drop",
                 }}
               >
                 {GetCookie("userType") != "employer" || disableApply != true
