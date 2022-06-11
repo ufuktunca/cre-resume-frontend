@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const localURL = "http://localhost:8080";
+export const localURL = "https://cre-resume-backend.herokuapp.com";
 
 export const LoginHandler = async (email, password, loginType) => {
   try {

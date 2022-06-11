@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GetCookie } from "./user";
 
-export const localURL = "http://localhost:8080";
+export const localURL = "https://cre-resume-backend.herokuapp.com";
 
 export const CVHandler = async (
   nameSurname,
