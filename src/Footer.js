@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer>
       {window.location.pathname != "/login" &&
-        window.location.pathname != "create-cv" && (
+        window.location.pathname != "/create-cv" && (
           <div className="footer-bottom-area footer-bg">
             <div className="container">
               <div className="footer-border">
