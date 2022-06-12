@@ -94,15 +94,15 @@ export const GetUserJobPostsHandler = async (
   sort
 ) => {
   let query = "";
-  if (category.type != "") {
+  if (category&&category.type != "") {
     query += "&category=" + category.type;
   }
 
-  if (salary[0] > 0 || salary[1] > 0) {
+  if (salary && (salary[0] > 0 || salary[1] > 0)) {
     query += "&from=" + salary[0] + "&to=" + salary[1];
   }
 
-  if (sort.type != "") {
+  if (sort&&sort.type != "") {
     query += "&sort=" + sort.type;
   }
 
