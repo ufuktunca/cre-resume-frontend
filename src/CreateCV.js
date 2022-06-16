@@ -160,6 +160,9 @@ export default function CreateCV() {
 
   const increseStage = (e) => {
     e.preventDefault();
+    if (stage == 1 && photo == "") {
+      return;
+    }
     setStage(stage + 1);
   };
 
